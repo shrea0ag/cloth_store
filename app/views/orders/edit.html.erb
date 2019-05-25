@@ -1,0 +1,14 @@
+<h2> Return </h2>
+<div class="container" style="margin-left: 16%">
+	<div class="form-group">
+		<%= form_with(model: @order) do |f| %> 
+			<%= f.label :actual_return_date , class:"control-label col-sm-2"%>
+			<%= f.date_field :actual_return_date, class: "col-sm-4"%>
+
+			<div style="margin-left:18%">
+				<%= f.submit  %>
+			</div>
+
+		<% end %> 
+	</div>
+</div>

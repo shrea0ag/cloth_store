@@ -1,0 +1,44 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  padding-top: 60px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}
+
+.style_image{
+  width: 101%;
+  height: 200%;
+  margin-top: -6%
+}
+
+.top-right{
+  position: absolute;
+  top: 31%;
+  left: 38%;
+  font-size: 154%;
+  color: white;
+}
+
+.top-left {
+  position: absolute;
+  top: 31%;
+  left: 27%;
+  font-size: 154%;
+  color: white;
+}

@@ -1,0 +1,22 @@
+<div class = "row">
+	<div class = "col-md-4">
+		<h5> Name: </h5>
+		<h5> Size: </h5>
+		<h5> Color: </h5>
+		<h5> quantity </h5>
+		<h5> return_date</h5>
+		<h5> total </h5>
+
+	</div>
+	<div class = "col-md-4">
+		<%= @order_item.product.name %> <br>
+		<%= @order_item.size %> <br>
+    <%= @order_item.color %> <br>
+		<%= @order_item.quantity %> <br>
+		<%= @order_item.expected_return_date %> <br>
+		<%= @order_item.quantity * @order_item.product.price * (@order_item.expected_return_date - Date.today)%>
+	</div>
+	<div class = "col-md-4">
+		<%= render 'orders/new'  %>
+	</div>
+</div>

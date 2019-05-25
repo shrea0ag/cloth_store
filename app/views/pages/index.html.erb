@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ClothRentalStore</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style type="text/css">
+    	body { 
+  		padding-top: 80px; 
+  		font-family: Arvo; 
+  		background-image: url(/assets/13.jpg); 
+			}
+			h1{
+				text-align: left;
+				color: white;
+				margin-top: 0px;
+			}
+			h3{
+				color: white;
+			}
+
+    </style>
+  </head>
+ <body>
+ 	<b> <h1> THE FUTURE OF OUR WARDDROBE <STRONG>RENTAL CLOTHES...</STRONG> </h1> </b>
+ 	<h3 > YOU ARE ? SELECT: </h3>
+ 	<STRONG><h5><%= link_to "Borrower" , borrower_session_path, :class=> 'top-left' %></h5></STRONG> 
+ 	<strong><h5><%= link_to "Borrowee" , borrowee_session_path, :class=> 'top-right' %></h5></strong> 
+  </body>
+</html>

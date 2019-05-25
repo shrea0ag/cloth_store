@@ -1,0 +1,37 @@
+<h1>Add Products</h1>
+<div class="container" style="margin-left: 16%">
+	<div class="form-group">
+		<%= form_with model: @product do |f| %> 
+
+			<%= f.label :name , class:"control-label col-sm-2"%>
+			<%= f.text_field :name, class: "col-sm-4"%>
+			<br>
+			<br>
+			<%= f.label :size, class:"control-label col-sm-2"%>
+			<%= f.check_box :size_xs%>
+			<%= f.label(:xs, "Xtra-Small") %>
+			<%= f.check_box :size_s%>
+			<%= f.label(:s, "Small") %>
+			<%= f.check_box :size_m %>
+			<%= f.label(:m, "Medium") %>
+			<%= f.check_box :size_l %>
+			<%= f.label(:l, "Large") %>
+			<%= f.check_box :size_xl %>
+			<%= f.label(:xl, "Xtra-Large") %>
+			<br>
+			<br>
+			<%= f.label :color, class: "control-label col-sm-2" %>
+			<%= f.text_field :color, class: "col-sm-4" %>
+			<br>
+			<br>
+			<%= f.label :price, class: "control-label col-sm-2" %>
+			<%= f.text_field :price, class: "col-sm-4" %>
+			<br>
+			<br>
+			<div style="margin-left:18%">
+				<%= f.submit  %>
+			</div>
+
+		<% end %> 
+	</div>
+</div>

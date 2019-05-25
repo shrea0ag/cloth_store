@@ -1,0 +1,12 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+	<div class="container">
+	  <nav>
+	    <ul class="nav navbar-nav navbar-right">
+	    	<li><%= link_to 'Log out', destroy_borrower_session_path, method: :delete %></li>
+				<li><%= link_to 'Edit_details' , edit_borrower_registration_path, method: :get %></li>
+			</ul>
+	  </nav>
+	</div>
+</header>
+
+

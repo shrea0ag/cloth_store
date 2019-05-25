@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ClothRentalStore</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if borrowee_signed_in? %>
+        <%= render 'layouts/borrowee_signed_in' %>
+    <% end%>
+    <% if borrower_signed_in? %>
+        <%= render 'layouts/borrower_signed_in' %>
+    <% end%>
+    <div class="container">
+      <% if flash.present? %>
+        <ul>
+          <% flash.each do |key, message| %>
+            <li class="<%= key %>"><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+      <%= yield %>
+    </div>
+  </body>
+</html>
+
+

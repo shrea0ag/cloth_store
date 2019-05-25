@@ -1,0 +1,19 @@
+<%= form_for @order_item do |f| %>
+  <%= f.hidden_field :product_id , value: @product.id %> <br>
+  <%= f.label :size %> <br>
+  <% @product.size.split(',').each do |size| %> 
+    <%= f.radio_button(:size, size) %>
+    <%= f.label(:size, size) %>
+  <% end %> <br>
+  <%= f.label        :quantity %> 
+  <%= f.number_field :quantity %> 
+  <br>
+  <%= f.label :Color %> <br>
+  <% @product.color.split(',').each do |color| %>
+    <%= f.radio_button(:color, color) %>
+    <%= f.label(:color, color) %>
+  <% end %> <br>
+  <%= f.label :Bought_for_days? %>
+  <%= f.number_field(:days) %> <br>
+  <%= f.submit "Buy Now" %>
+<% end %>

@@ -1,0 +1,24 @@
+<table class = "table">
+  <tr>
+	  <th> Name: </th>
+		<th> Size: </th>
+		<th> Color: </th>
+		<th> price: </th>
+  </tr>
+  <% @borrowees.each do |borrowee| %>
+  	<% borrowee.products.each do |product| %>
+	    <tr>
+	      <td><%= product.name %></td>
+	      <td><%= product.size %></td>
+	      <td><%= product.color %></td>
+	      <td><%= product.price %></td>
+	      <td><%= link_to 'Destroy', product ,
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+
+    	</tr>
+	  <% end %>
+  <% end %>
+ </table>
+<%= link_to "Add Product", new_product_path %>
