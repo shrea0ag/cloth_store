@@ -2,8 +2,14 @@
 	<div class="container">
 	  <nav>
 	    <ul class="nav navbar-nav navbar-right">
+	    	<li style = "margin-top: 10px;"> <%= form_tag products_path, :method =>'get' do  %>
+  				<%= text_field_tag :search, params[:search] %>
+  				<%= submit_tag "Search" %>
+					<% end %></li>
+				<li><%= link_to 'Home', products_path %> </li>
+				<li><%= link_to 'Edit details' , edit_borrower_registration_path, method: :get %></li>
 	    	<li><%= link_to 'Log out', destroy_borrower_session_path, method: :delete %></li>
-				<li><%= link_to 'Edit_details' , edit_borrower_registration_path, method: :get %></li>
+				<li><%= link_to 'My products',  borrowers_path %>
 			</ul>
 	  </nav>
 	</div>

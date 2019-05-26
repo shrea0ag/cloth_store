@@ -2,7 +2,10 @@ class ProductsController < ApplicationController
 	# before_action :authenticate_borrowee!, on: [:create, :update]
 
   def index
-     @products = Product.all
+    if @products = Product.where(["name LIKE ?","%#{params[:search]}%"])
+    else
+      @products = Product.all
+    end
   end
 
   def new
@@ -26,7 +29,12 @@ class ProductsController < ApplicationController
   end
 
   def edit
+   @product = Product.find(params[:id])
   end
+
+  # def update
+
+  # end
 
   def destroy
     @product = current_borrowee.products.find_by(id: params[:id])
@@ -36,6 +44,6 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-  	params.require(:product).permit(:name, :size_s, :size_xs, :size_m, :size_l, :size_xl, :color, :price)
+  	params.require(:product).permit(:name, :size_s, :size_xs, :size_m, :size_l, :size_xl, :color, :count, :gender, :price, :image)
   end
 end

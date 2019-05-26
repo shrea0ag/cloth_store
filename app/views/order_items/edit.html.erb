@@ -1,9 +1,8 @@
 <div class="form-group">
   <%= form_for @order_item do |f| %>
-    <%= f.hidden_field :product_id , value: @product.id %> 
     <div>
       <%= f.label :size %>: <br>
-      <% @product.size.split(',').each do |size| %> 
+      <% @order_item.product.size.split(',').each do |size| %> 
         <%= f.radio_button(:size, size) %>
         <%= f.label(:size, size) %>
       <% end %>
@@ -14,7 +13,7 @@
     </div>
     <div>
       <%= f.label :Color %>:<br>
-      <% @product.color.split(',').each do |color| %>
+      <% @order_item.product.color.split(',').each do |color| %>
         <%= f.radio_button(:color, color) %>
         <%= f.label(:color, color) %>
       <% end %> 

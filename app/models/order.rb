@@ -19,7 +19,7 @@ class Order < ApplicationRecord
 
   private
   def initial_total
-  	self.total = calculate_initial_total
+    self.total = calculate_initial_total
   end
 
   def update_total
@@ -32,5 +32,5 @@ class Order < ApplicationRecord
     else 
       self.status = "returned"
     end
-  end
+end
 end

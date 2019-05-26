@@ -1,16 +1,22 @@
-<h1>Checkout</h1>
-<%= form_for @order do |f| %>
-  <%= f.hidden_field :order_item_id , value: @order_item.id %> <br>
+<div class="form-group">
+  <%= form_for @order do |f| %>
+    <%= f.hidden_field :order_item_id , value: @order_item.id %> 
+    <div>
+      <%= f.label :name %>
+      <p> <%= @order_item.borrower.name %> </p>
+    </div>
 
-  <%= f.label :name  %> 
-  <%= @order_item.borrower.email %>
-  <br>
-  <%= f.label :address   %>
-  <%= f.text_field :address%>
-  <br>
-  <%= f.label :phone_number %>
-  <%= f.text_field :phone %>
-  <br>
-  <%= f.submit "Checkout" %>
-<% end %>
- 
+    <div>
+      <%= f.label :address%>
+      <%= f.text_area(:address, size: '30x5') %>
+    </div>
+    <div style = "margin-top: 10px;">
+      <%= f.label        :phone %> 
+      <%= f.phone_field :phone %> 
+    </div> 
+
+    <div style = "margin-top: 10px;">
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>

@@ -1,17 +1,21 @@
 <table class = "table">
   <tr>
+  	<th> Image: </th>
 	  <th> Name: </th>
 		<th> Size: </th>
 		<th> Color: </th>
 		<th> price: </th>
+		<th> quantity: </th>
   </tr>
   <% @borrowees.each do |borrowee| %>
   	<% borrowee.products.each do |product| %>
 	    <tr>
+	    	<td ><%= image_tag(product.image,style: "width: 25%",class:"img-thumbnail") %></td>
 	      <td><%= product.name %></td>
 	      <td><%= product.size %></td>
 	      <td><%= product.color %></td>
 	      <td><%= product.price %></td>
+	      <td><%= product.count %> </td>
 	      <td><%= link_to 'Destroy', product ,
                 method: :delete,
                 data: { confirm: 'Are you sure?' } %></td>

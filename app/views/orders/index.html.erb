@@ -1,0 +1,27 @@
+<table>
+	<% @borrowers.each do |borrower| %>
+	  <% borrower.borrowed_products.each_slice(3) do |slice| %>   
+	    <tr>
+	      <% slice.each do |order| %>
+	        <td> 
+	        
+	          <div class = "row">
+	            <div class = "col-md-12">
+	              <div class = "thumbnail">
+	               
+	                  <%= image_tag(order.product.image) %>
+	                
+	                <div class = caption >
+	                  <p> <%= order.product.name %> |
+	                  <%= order.total %> | <%= order.expected_return_date %> | <%= link_to "Return", edit_order_path(order) %></p>
+	                </div>
+	              </div>
+	            </div>
+	          </div>
+	        </td>
+	      <% end %>
+	    </tr>
+	  <% end %>
+	<% end %>
+</table> 
+<%= link_to "back", products_path %>

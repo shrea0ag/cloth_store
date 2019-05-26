@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_24_115702) do
+ActiveRecord::Schema.define(version: 2019_05_26_053706) do
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
 
   create_table "borrowees", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -20,6 +41,8 @@ ActiveRecord::Schema.define(version: 2019_05_24_115702) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.integer "phone"
     t.index ["email"], name: "index_borrowees_on_email", unique: true
     t.index ["reset_password_token"], name: "index_borrowees_on_reset_password_token", unique: true
   end
@@ -32,33 +55,35 @@ ActiveRecord::Schema.define(version: 2019_05_24_115702) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.integer "phone"
     t.index ["email"], name: "index_borrowers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_borrowers_on_reset_password_token", unique: true
   end
 
   create_table "order_items", force: :cascade do |t|
-    t.integer "borrower_id"
-    t.integer "product_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "quantity"
     t.string "size"
     t.string "color"
     t.date "expected_return_date"
+    t.integer "borrower_id"
+    t.integer "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["borrower_id"], name: "index_order_items_on_borrower_id"
     t.index ["product_id"], name: "index_order_items_on_product_id"
   end
 
   create_table "orders", force: :cascade do |t|
+    t.date "actual_return_date"
+    t.string "status", default: "processing"
+    t.decimal "total"
+    t.string "address"
+    t.string "phone"
     t.integer "borrower_id"
     t.integer "order_item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "status", default: "processing"
-    t.string "address"
-    t.integer "phone"
-    t.decimal "total"
-    t.date "actual_return_date"
     t.index ["borrower_id"], name: "index_orders_on_borrower_id"
     t.index ["order_item_id"], name: "index_orders_on_order_item_id"
   end
@@ -76,7 +101,18 @@ ActiveRecord::Schema.define(version: 2019_05_24_115702) do
     t.decimal "price"
     t.string "color"
     t.integer "count", default: 4
+    t.string "gender"
     t.index ["borrowee_id"], name: "index_products_on_borrowee_id"
+  end
+
+  create_table "searches", force: :cascade do |t|
+    t.string "keywords"
+    t.decimal "min_price"
+    t.decimal "max_price"
+    t.string "name"
+    t.string "gender"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

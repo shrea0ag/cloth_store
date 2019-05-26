@@ -1,9 +1,9 @@
 class Product < ApplicationRecord
   belongs_to :borrowee
   has_many   :order_items
+  has_one_attached :image
 	validates  :borrowee_id, presence: true
 	validates  :name, presence: true, length: { in: 6..20 }
-	# validates  :size, presence: true
 	validates  :price, presence: true, numericality: true
 
 	def size 
@@ -12,8 +12,13 @@ class Product < ApplicationRecord
 		q.select{|key, value| value.eql?(true) }.keys.join(',')
 	end
 
+  # def thumbnail input
+  #   return self.images[input].variant(resize: "300x300!").processed
+  # end
+  
+
 	def count_quantity_of_product_borrowed
-  	self.count - OrderItem.where("product_id = ?", self.id).count
+  	self.count -  self.order_items.count
   end
 
   def available?

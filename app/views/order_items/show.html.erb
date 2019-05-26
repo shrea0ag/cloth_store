@@ -1,22 +1,35 @@
 <div class = "row">
-	<div class = "col-md-4">
-		<h5> Name: </h5>
-		<h5> Size: </h5>
-		<h5> Color: </h5>
-		<h5> quantity </h5>
-		<h5> return_date</h5>
-		<h5> total </h5>
-
+	<div class = "col-md-2">
+		<%= image_tag(@order_item.product.image, class:"img-thumbnail") %>
 	</div>
-	<div class = "col-md-4">
-		<%= @order_item.product.name %> <br>
-		<%= @order_item.size %> <br>
-    <%= @order_item.color %> <br>
-		<%= @order_item.quantity %> <br>
-		<%= @order_item.expected_return_date %> <br>
-		<%= @order_item.quantity * @order_item.product.price * (@order_item.expected_return_date - Date.today)%>
+	<div class = "col-md-6">
+		<table class = "table">
+  		<tr>
+		    <th>Name</th>
+		    <th>Size</th>
+		    <th>Color</th>
+		    <th>price</th>
+		    <th>total</th>
+		   	<th>return_date</th>
+  		</tr>
+  		<tr>
+		    <td><%= @order_item.product.name %></td>
+		    <td><%= @order_item.size %></td>
+		    <td><%= @order_item.color %></td>
+		    <td><%= @order_item.product.price %></td>
+		    <td><%= @order_item.quantity *  @order_item.product.price * (@order_item.expected_return_date - Date.today)%></td>
+		    <td><%= @order_item.expected_return_date %> </td>
+		  </tr>
+		</table>
+		
 	</div>
-	<div class = "col-md-4">
-		<%= render 'orders/new'  %>
+	<div class = "col-md-1" >
+	</div>
+	<div class = "col-md-3">
+		<%= render 'orders/new' %>
 	</div>
 </div>
+<%= link_to "Don't want to buy? Go back", @order_item ,method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+<%= link_to "edit", edit_order_item_path(@order_item) %>
+

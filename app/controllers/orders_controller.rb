@@ -1,14 +1,22 @@
 class OrdersController < ApplicationController
 
-	def create
+	def index
+		@order = Order.all
+	end
+
+  def create
 	 	@order = current_borrower.orders.build(order_params)
-		if @order.save!
-			flash[:success] = "Order Processing"
-			redirect_to @order
+		if @order.save
+			flash[:success] = "Order Placed"
+			redirect_to borrowers_path(@borrower)
 		else
 			flash.now[:error] = @order.errors.full_messages.to_sentence
 			redirect_to products_path
 		end
+	end
+
+	def show 
+		@order = Order.find(params[:id])
 	end
 
 	def edit
@@ -17,17 +25,18 @@ class OrdersController < ApplicationController
 
 	def update
 		@order = Order.find(params[:id])
-		debugger
 	  if @order.update(order_params)
-	  	flash[:success] = "Order Processing"
+	  	flash[:success] = "Order Returned"
 	    redirect_to @order
 	  else
 	  	flash.now[:error] = @order.errors.full_messages.to_sentence
 	    render 'edit'
 	  end
 	end
+	 
 
+	private
 	def order_params
-		params.require(:order).permit(:status, :address, :phone, :email, :total, :order_item_id, :actual_return_date)
+		params.require(:order).permit(:order_item_id, :actual_return_date, :status, :total, :address, :phone)
 	end
 end
