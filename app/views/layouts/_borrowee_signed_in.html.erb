@@ -5,7 +5,7 @@
 	    	<li><%= link_to "Add Product", new_product_path %> </li>
 				<li><%= link_to 'Log out', destroy_borrowee_session_path, method: :delete %></li>
 				<li><%= link_to 'Edit Profile' , edit_borrowee_registration_path, method: :get %></li>
-				<li><%= link_to "My products" , borrowees_path %> </li>
+				<li><%= link_to "My products" , borrowee_path(current_borrowee) %> </li>
 			</ul>
 	  </nav>
 	</div>

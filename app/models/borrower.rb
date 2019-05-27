@@ -5,6 +5,10 @@ class Borrower < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :orders
   has_many :order_items
+  validates :name,  presence: true, length: { maximum: 50 }
+ 	validates :email, presence: true, uniqueness: true
+  validates :phone, presence: true, numericality: true, length: {is: 10}, uniqueness: true
+
 
   def borrowed_products
   	self.orders.where("status LIKE ?", "borrowed")

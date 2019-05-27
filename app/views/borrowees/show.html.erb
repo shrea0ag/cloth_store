@@ -7,8 +7,7 @@
 		<th> price: </th>
 		<th> quantity: </th>
   </tr>
-  <% @borrowees.each do |borrowee| %>
-  	<% borrowee.products.each do |product| %>
+  	<% @borrowee.products.each do |product| %>
 	    <tr>
 	    	<td ><%= image_tag(product.image,style: "width: 25%",class:"img-thumbnail") %></td>
 	      <td><%= product.name %></td>
@@ -23,6 +22,5 @@
 
     	</tr>
 	  <% end %>
-  <% end %>
  </table>
 <%= link_to "Add Product", new_product_path %>

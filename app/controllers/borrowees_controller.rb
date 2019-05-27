@@ -1,7 +1,9 @@
 class BorroweesController < ApplicationController
+	before_action :authenticate_borrowee!
 
-	def index
-  	@borrowees = Borrowee.all
+  def show
+  	@borrowee = Borrowee.find(params[:id])
   end
+
   
 end
