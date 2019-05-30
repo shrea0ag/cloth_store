@@ -3,10 +3,10 @@ require 'test_helper'
 class BorroweeTest < ActiveSupport::TestCase
 
 	def setup
-		@borrowee = Borrowee.new(name: "abhilasha", phone: 9829034774, email: "abhi@gmail.com", password: "123456")
+		@borrowee = create(:borrowee)
 	end
 
-  test "@borrowee should be valid" do
+  test "borrowee should be valid" do
   	assert @borrowee.valid?
   end
 
@@ -28,11 +28,6 @@ class BorroweeTest < ActiveSupport::TestCase
   test "phone number should be present" do
   	@borrowee.phone = nil
   	assert_not @borrowee.valid?
-  end
-
-  test "phone number length should be 10" do
-  	@borrowee.phone = 9829034774
-  	assert @borrowee.valid?
   end
 
   test "phone should be unique" do

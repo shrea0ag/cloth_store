@@ -1,19 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  actual_return_date: 2019-05-26
-  status: MyString
-  total: MyString
-  address: MyString
-  phone: MyString
-  borrower: one
-  order_item: one
+# one:
+#   actual_return_date: 2019-05-26
+#   status: MyString
+#   total: MyString
+#   address: MyString
+#   phone: MyString
+#   borrower: one
+#   order_item: one
 
-two:
-  actual_return_date: 2019-05-26
-  status: MyString
-  total: MyString
-  address: MyString
-  phone: MyString
-  borrower: two
-  order_item: two
+# two:
+#   actual_return_date: 2019-05-26
+#   status: MyString
+#   total: MyString
+#   address: MyString
+#   phone: MyString
+#   borrower: two
+#   order_item: two

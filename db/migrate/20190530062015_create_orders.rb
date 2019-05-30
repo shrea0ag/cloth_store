@@ -6,8 +6,9 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.decimal :total
       t.string :address
       t.string :phone
+      t.date :expected_return_date
+      t.integer :days
       t.references :borrower, foreign_key: true
-      t.references :order_item, foreign_key: true
 
       t.timestamps
     end

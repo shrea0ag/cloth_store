@@ -1,7 +1,12 @@
 require 'test_helper'
 
 class ProductTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
+
+  # def setup
+  # 	@product = products(:product1)
+  # end
+
+  # test "product is valid" do
+  # 	assert @product.valid?
   # end
 end

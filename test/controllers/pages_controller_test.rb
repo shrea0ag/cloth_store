@@ -11,7 +11,10 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
   	assert_response :success
   end
 
-
+  test "should get borrower sign_in" do
+  	get new_borrower_session_path
+  	assert_response :success
+  end
 
 
 end

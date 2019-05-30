@@ -1,10 +1,21 @@
-<div class="row">
-  <div class="col-md-4">
-    <div class="thumbnail">
-    	<%= image_tag(@order.order_item.product.image) %>
-    	<div class = "caption" >
-    		<p><%= @order.total %> | <%= @order.actual_return_date %> </p>
-    	</div>
-    </div>
-  </div>
-</div> 
+<table class = "table">
+  <tr>
+  	<th> Image: </th>
+	  <th> Quantity: </th>
+		<th> Price </th>
+		<th> return_date </th>
+		<th> expected_return_date </th>
+		<th> fine </th>
+  </tr>
+  <%@order.order_items.each  do |item| %>
+		<tr>
+			<td><%= image_tag(item.product.image,style: "width: 25%",class:"img-thumbnail") %></td>
+		  <td><%= item.Quantity %></td>
+		  <td><%= item.product.price %></td>
+		  <td><%= Date.today %></td>
+		  <td><%= @order.expected_return_date %></td>
+		  <td><%= @order.total_amount %></td>
+		</tr>
+  <% end %>
+</table>
+

@@ -3,8 +3,8 @@ require 'test_helper'
 class BorrowerTest < ActiveSupport::TestCase
 
  	def setup
- 		@borrower = Borrower.new(name: "shipra", email: "shipra@gmail.com", phone: "9829034774", password: "123456")
- 	end
+ 		@borrower = create(:borrower)
+  end
 
  	test "@borrower should be valid" do
   	assert @borrower.valid?

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_26_053706) do
+ActiveRecord::Schema.define(version: 2019_05_30_062638) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -62,15 +62,17 @@ ActiveRecord::Schema.define(version: 2019_05_26_053706) do
   end
 
   create_table "order_items", force: :cascade do |t|
-    t.integer "quantity"
     t.string "size"
     t.string "color"
-    t.date "expected_return_date"
+    t.integer "quantity"
+    t.decimal "total"
     t.integer "borrower_id"
     t.integer "product_id"
+    t.integer "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["borrower_id"], name: "index_order_items_on_borrower_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
     t.index ["product_id"], name: "index_order_items_on_product_id"
   end
 
@@ -80,12 +82,22 @@ ActiveRecord::Schema.define(version: 2019_05_26_053706) do
     t.decimal "total"
     t.string "address"
     t.string "phone"
+    t.date "expected_return_date"
+    t.integer "days"
     t.integer "borrower_id"
-    t.integer "order_item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["borrower_id"], name: "index_orders_on_borrower_id"
-    t.index ["order_item_id"], name: "index_orders_on_order_item_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.decimal "amount"
+    t.string "token"
+    t.string "transaction_id"
+    t.integer "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_payments_on_order_id"
   end
 
   create_table "products", force: :cascade do |t|

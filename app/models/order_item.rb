@@ -1,12 +1,14 @@
 class OrderItem < ApplicationRecord
+
   belongs_to :borrower
   belongs_to :product
-  has_one    :order
-  attr_accessor :days
-  before_save :days_to_expected_return_days
-  validates   :quantity, numericality: true
+  belongs_to :order
+  before_save :total_of_a_order_item
+	validates   :quantity, presence: true, numericality: true
+	validates   :size, presence: true
+	validates   :color, presence: true
 
-  def days_to_expected_return_days
-  	self.expected_return_date = Date.today + days.to_i
-  end
+  def total_of_a_order_item
+		self.total = product.price * quantity 
+	end
 end

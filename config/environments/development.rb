@@ -59,4 +59,16 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  gateway = Braintree::Gateway.new(
+  :environment => :sandbox,
+  :merchant_id => 'yqvkxjhrk3f9466z',
+  :public_key => 'rd8vrswk49k8w6hf',
+  :private_key => 'b457e8ec5b5ddda20b7f7e5977bcaf96',
+  )
+  result = gateway.transaction.sale(
+  :amount => "100.00",
+  :payment_method_nonce => "nonce_from_the_client",
+  :options => {
+   :submit_for_settlement => true
+  })
 end

@@ -22,12 +22,12 @@
 	<div class = "col-md-1" >
 	</div>
 	<div class = "col-md-3">
-		<% unless @product.available? %>
-			<p> Out Of Stock </p>
-		<% else %>
+		<%if @product.available? %>
 			<%= render 'order_items/new' %>
+			
+		<% else %>
+			<p> Out Of Stock </p>
 		<% end %> 
-		
 	</div>
 </div>
 <%= link_to "back", products_path %>

@@ -1,6 +1,5 @@
 <table>
-	<% @borrowers.each do |borrower| %>
-	  <% borrower.borrowed_products.each_slice(3) do |slice| %>   
+	  <% current_borrower.borrowed_products.each_slice(3) do |slice| %>   
 	    <tr>
 	      <% slice.each do |order| %>
 	        <td> 
@@ -22,6 +21,5 @@
 	      <% end %>
 	    </tr>
 	  <% end %>
-	<% end %>
 </table> 
 <%= link_to "back", products_path %>

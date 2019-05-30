@@ -8,7 +8,6 @@ class PagesController < ApplicationController
   def user_authentication
   	if borrowee_signed_in?
   	 redirect_to new_product_path
-  	
     elsif borrower_signed_in?
   	 redirect_to products_path
   	else

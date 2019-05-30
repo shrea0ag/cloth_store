@@ -1,14 +1,36 @@
-<h2> Return </h2>
 <div class="container" style="margin-left: 16%">
-	<div class="form-group">
-		<%= form_with(model: @order) do |f| %> 
-			<%= f.label :actual_return_date , class:"control-label col-sm-2"%>
-			<%= f.date_field :actual_return_date, class: "col-sm-4"%>
+   <div class="form-group">
+    <%= form_with(model: @order) do |f| %> 
+      <% if @order.status == "processing" %>
 
-			<div style="margin-left:18%">
-				<%= f.submit  %>
-			</div>
+        <div style= "margin-top: 20px;">
+          <%= f.label :buying_for_days %>
+          <%= f.number_field :days  %> 
+        </div>
+        
 
-		<% end %> 
-	</div>
+        <div style = "margin-top: 10px;">
+          <%= f.label        :phone %> 
+          <%= f.phone_field :phone %> 
+        </div> 
+
+        <div>
+          <%= f.label :address%>
+          <%= f.text_area :address, size: '30x5' %>
+        </div>
+       
+    		<div style="margin-left:18%">
+    			<%= f.submit  %>
+  			</div>
+      <% end %>
+      <% if @order.status == "borrowed" %>
+      <h3> Late returns cost Rs.200/day on the price </h3>
+        <div style = "float:left;">
+          <%= render 'orders/form' %>
+          <%= f.hidden_field :total, value: @order.total_amount %>
+          <p> <%= f.submit "return", name: "return" %> <%= @order.total_amount %> </p>
+        </div>
+      <% end %>
+    <% end %> 
+  </div>
 </div>

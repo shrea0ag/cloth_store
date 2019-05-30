@@ -9,8 +9,17 @@ class Borrower < ApplicationRecord
  	validates :email, presence: true, uniqueness: true
   validates :phone, presence: true, numericality: true, length: {is: 10}, uniqueness: true
 
-
-  def borrowed_products
-  	self.orders.where("status LIKE ?", "borrowed")
+  def processing_orders
+  	orders.where("status LIKE ?", "processing")
   end
+
+  def borrowed_orders
+    orders.where("status LIKE ?", "borrowed")
+  end
+
+  def open_order
+    orders.open_orders.take || orders.create
+  end
+
+ 
 end

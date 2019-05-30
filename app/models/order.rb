@@ -1,36 +1,46 @@
 class Order < ApplicationRecord
+
   belongs_to :borrower
-  belongs_to :order_item
-  before_create :initial_total
-  before_update :update_total
-  before_save :update_status
+  has_many :order_items, dependent: :destroy
+  has_one  :payment
+  before_update :days_to_expected_return_date
+  before_update :update_status
+  scope :open_orders, ->{ where(status: 'processing')}
+
+  def total_of_a_order
+    order_items.collect {|x| x.total}.sum * days
+  end
+
+  def days_to_expected_return_date
+    self.expected_return_date = Date.today + days
+  end
+
+  def final_total_of_total
+    total_price = 0
+    order_items.each do |item| 
+      total_price += (Date.today - expected_return_date) * (item.total + 200)
+    end
+    total_price
+  end
 
 
-  def calculate_initial_total
-    item = self.order_item  
-    self.total = item.product.price * item.quantity * (item.expected_return_date - Date.today) 
+  def total_amount
+    if Date.today == expected_return_date
+      self.total = total_of_a_order
+    else
+      self.total = final_total_of_total
+    end
   end
   
-  def calculate_final_total
-     item = self.order_item  
-    self.total = total + (actual_return_date - item.expected_return_date) * (item.product.price + 200)
-  end
-
-
   private
-  def initial_total
-    self.total = calculate_initial_total
-  end
-
-  def update_total
-    self.total = calculate_final_total
-  end
-
   def update_status
-    if self.status.eql?("processing")
+    if status == "processing"
       self.status = "borrowed"
-    else 
-      self.status = "returned"
     end
+  end
 end
-end
+
+
+
+# if Date.today < expected_return_date
+#           total_price += item.total

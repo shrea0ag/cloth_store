@@ -9,3 +9,14 @@
 # #
 # two: {}
 # # column: value
+# shipra:
+#   name: "shipra"
+#   email: "shipra@gmail.com"
+#   phone: 9829034774
+#   encrypted_password: "123456"
+
+# shivani:
+#   name: "shivani"
+#   email: "shivani@gmail.com"
+#   phone: 01412702764
+#   encrypted_password: "123456"
