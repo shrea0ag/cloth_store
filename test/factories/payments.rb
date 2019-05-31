@@ -3,6 +3,6 @@ FactoryBot.define do
     amount { "9.99" }
     token { "MyString" }
     transaction_id { "MyString" }
-    order { nil }
+    order_id { 1 }
   end
 end

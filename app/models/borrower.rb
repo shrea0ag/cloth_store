@@ -20,6 +20,4 @@ class Borrower < ApplicationRecord
   def open_order
     orders.open_orders.take || orders.create
   end
-
- 
 end

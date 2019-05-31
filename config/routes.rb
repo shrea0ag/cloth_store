@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   resources  :borrowers, only: [:index, :show]
   resources  :products
   resources  :orders
-  resources  :order_items
-  resources  :searches
+  resources  :order_items, only: [:new, :create, :edit, :update, :destroy]
+  resources  :searches, only: [:new, :create, :show]
   resources  :checkouts, only: [:new, :create, :show]
   # resources  :borrowers
   root 'pages#index'

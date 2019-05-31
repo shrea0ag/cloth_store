@@ -1,12 +1,12 @@
 FactoryBot.define do
   factory :order do
     actual_return_date { "2019-05-30" }
-    status { "MyString" }
+    status { "processing" }
     total { "9.99" }
-    address { "MyString" }
-    phone { "MyString" }
+    address { "b-80" }
+    phone { "9829034774" }
     expected_return_date { "2019-05-30" }
     days { 1 }
-    borrower { nil }
+    borrower_id { 5 }
   end
 end

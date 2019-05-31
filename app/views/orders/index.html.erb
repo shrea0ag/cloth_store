@@ -3,13 +3,10 @@
 	    <tr>
 	      <% slice.each do |order| %>
 	        <td> 
-	        
 	          <div class = "row">
 	            <div class = "col-md-12">
 	              <div class = "thumbnail">
-	               
-	                  <%= image_tag(order.product.image) %>
-	                
+	              	  <%= image_tag(order.product.image) %>
 	                <div class = caption >
 	                  <p> <%= order.product.name %> |
 	                  <%= order.total %> | <%= order.expected_return_date %> | <%= link_to "Return", edit_order_path(order) %></p>

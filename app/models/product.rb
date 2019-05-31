@@ -7,13 +7,13 @@ class Product < ApplicationRecord
 	validates  :price, :count, presence: true, numericality: true
   validates  :gender, presence: true
   validates  :color, presence: true
-  validate  :image_type
+  validates  :image, presence: true
   validate  :one_of_the_sizes_must_be_checked
 
 
   def one_of_the_sizes_must_be_checked
     if [size_s,size_xs,size_m,size_l,size_xl].all? {|word| word.eql?(false)}
-      errors.add("one size should be selected")
+      errors.add(:base, "one size should be selected")
     end
   end
 
@@ -31,6 +31,10 @@ class Product < ApplicationRecord
 		q.select{|key, value| value.eql?(true) }.keys.join(',')
 	end
 
+  def orders_for_a_product
+    order_items.includes(:order)
+  end
+
   def available?
     if count > count_quantity_of_product_borrowed  
       "true"
@@ -39,7 +43,7 @@ class Product < ApplicationRecord
 
   private
   def count_quantity_of_product_borrowed
-    order_items.collect{|x| x.order_id}.collect{|x| Order.find(x).status}.count("borrowed")
+    orders_for_a_product.select {|x| x.order.status.eql?("borrowed")}.count
   end
 end
 

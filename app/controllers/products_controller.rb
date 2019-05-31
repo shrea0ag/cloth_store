@@ -1,8 +1,7 @@
 class ProductsController < ApplicationController
 	before_action :authenticate_borrowee!, only: [:create, :update, :destroy, :new, :edit]
   before_action :authenticate_borrower!, only:[:show, :index]
-  before_action :correct_borrowee, only:[:edit, :update]
-
+  before_action :find_product, only:[:edit, :update]
   def index
     if @products = Product.where(["name LIKE ?","%#{params[:search]}%"])
     else
@@ -21,7 +20,7 @@ class ProductsController < ApplicationController
   	 redirect_to borrowee_path(current_borrowee)
     else
       flash.now[:error] = @product.errors.full_messages.to_sentence
-      render 'new'
+      render 'new'  
     end
   end
 
@@ -54,7 +53,7 @@ class ProductsController < ApplicationController
   	params.require(:product).permit(:name, :size_s, :size_xs, :size_m, :size_l, :size_xl, :color, :count, :gender, :price, :image)
   end
 
-  def correct_borrowee
-     @product = Product.find(params[:id])
+  def find_product
+    @product = Product.find(params[:id])
   end
 end

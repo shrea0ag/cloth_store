@@ -15,6 +15,4 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
   	get new_borrower_session_path
   	assert_response :success
   end
-
-
 end

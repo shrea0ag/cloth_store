@@ -1,6 +1,5 @@
 class PagesController < ApplicationController
  before_action :user_authentication
-  
   def index
   end
 

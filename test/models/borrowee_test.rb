@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class BorroweeTest < ActiveSupport::TestCase
-
 	def setup
 		@borrowee = create(:borrowee)
 	end

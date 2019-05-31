@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class BorrowerTest < ActiveSupport::TestCase
-
  	def setup
  		@borrower = create(:borrower)
   end

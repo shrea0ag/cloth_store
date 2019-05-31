@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class PaymentTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
+  # def setup
+  	
   # end
 end

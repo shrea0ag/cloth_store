@@ -1,12 +1,8 @@
 require 'test_helper'
 
 class BorroweesControllerTest < ActionDispatch::IntegrationTest
-	
-	include Devise::Test::IntegrationHelpers
-
   def setup
   	@borrowee = create(:borrowee)
- 
   end
 
   test "should get new" do
@@ -41,6 +37,4 @@ class BorroweesControllerTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", borrowee_path(@borrowee.id)
     assert_select "a[href=?]", destroy_borrowee_session_path
   end
-
-
 end

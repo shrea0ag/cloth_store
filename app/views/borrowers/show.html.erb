@@ -18,7 +18,7 @@
 	      <td><%= item.color %></td>
 	      <td><%= item.total %></td>
 	      
-	      <td> <%= link_to "Don't want to buy? delete", item ,method: :delete,
+	      <td> <%= link_to "Don't want to buy? delete", order_item_path(item) ,method: :delete,
                 data: { confirm: 'Are you sure?' } %></td>
 				<td> <%= link_to "edit", edit_order_item_path(item) %> </td>
    

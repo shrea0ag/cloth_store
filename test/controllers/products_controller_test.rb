@@ -1,9 +1,6 @@
 require 'test_helper'
 
 class ProductsControllerTest < ActionDispatch::IntegrationTest
-
-	include Devise::Test::IntegrationHelpers
-
 	def setup
 		@borrowee = create(:borrowee)
 		@product = create(:product, borrowee: @borrowee)

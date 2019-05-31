@@ -1,12 +1,8 @@
 require 'test_helper'
 
 class BorrowersControllerTest < ActionDispatch::IntegrationTest
- 
- include Devise::Test::IntegrationHelpers
-
   def setup
   	@borrower = create(:borrower)
-  	# @other_borrower = borrowers(:shivani)
   end
 
   test "should get new" do

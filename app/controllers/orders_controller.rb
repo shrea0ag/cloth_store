@@ -1,22 +1,12 @@
 class OrdersController < ApplicationController
+	before_action :authenticate_borrower!
+	before_action :find_order, only:[:show, :update]
 
 	def index
 		@order = Order.all
 	end
 
- #  def create
-	#  	@order = current_borrower.orders.build(order_params)
-	# 	if @order.save
-	# 		flash[:success] = "Order Placed"
-	# 		redirect_to @order
-	# 	else
-	# 		flash.now[:error] = @order.errors.full_messages.to_sentence
-	# 		redirect_to products_path
-	# 	end
-	# end
-
 	def show 
-		@order = Order.find(params[:id])
 	end
 
 	def edit
@@ -24,11 +14,8 @@ class OrdersController < ApplicationController
 	end
 
 	def update
-		@order = Order.find(params[:id])
-		debugger
 	  if @order.update_attributes(order_params)
 	  	if params[:return]
-	  		flash[:success] = "Order Returned"
 	  		redirect_to new_checkout_path(order_id: @order.id)
 	  	else
 		  	flash[:success] = "Order Borrowed"
@@ -44,5 +31,9 @@ class OrdersController < ApplicationController
 	private
 	def order_params
 		params.require(:order).permit(:actual_return_date, :status, :total, :address, :phone, :days)
+	end
+
+	def find_order
+		@order = Order.find(params[:id])
 	end
 end

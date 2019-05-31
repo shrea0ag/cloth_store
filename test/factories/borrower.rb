@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :borrower do
-  	name {"jackal" }
-	  email { "jackal@gmail.com" }
-	  phone { 9777777777 }
+  	name {"faa" }
+	  email { "faa@gmail.com" }
+	  phone { 9333333333 }
 	  password {"123456"}
   end
 end

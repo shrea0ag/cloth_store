@@ -1,27 +1,22 @@
-<div class="container" style="margin-left: 16%">
+<div class="container" >
    <div class="form-group">
     <%= form_with(model: @order) do |f| %> 
       <% if @order.status == "processing" %>
-
         <div style= "margin-top: 20px;">
           <%= f.label :buying_for_days %>
           <%= f.number_field :days  %> 
         </div>
-        
-
         <div style = "margin-top: 10px;">
           <%= f.label        :phone %> 
-          <%= f.phone_field :phone %> 
+          <%= f.phone_field :phone, style: "margin-left: 60px" %> 
         </div> 
-
-        <div>
+         <div>
           <%= f.label :address%>
-          <%= f.text_area :address, size: '30x5' %>
+          <%= f.text_area :address, size: '30x5', style: "margin-top: 15px;margin-left: 44px;" %>
+        </div> 
+        <div style="margin-left:9%">
+          <%= f.submit  %>
         </div>
-       
-    		<div style="margin-left:18%">
-    			<%= f.submit  %>
-  			</div>
       <% end %>
       <% if @order.status == "borrowed" %>
       <h3> Late returns cost Rs.200/day on the price </h3>

@@ -1,10 +1,9 @@
 class OrderItem < ApplicationRecord
-
   belongs_to :borrower
   belongs_to :product
   belongs_to :order
   before_save :total_of_a_order_item
-	validates   :quantity, presence: true, numericality: true
+	validates   :quantity, presence: true, numericality: {less_than: 5}
 	validates   :size, presence: true
 	validates   :color, presence: true
 
