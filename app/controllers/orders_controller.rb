@@ -1,16 +1,15 @@
 class OrdersController < ApplicationController
 	before_action :authenticate_borrower!
-	before_action :find_order, only:[:show, :update]
+	before_action :find_order, only:[:show, :update, :edit]
 
 	def index
-		@order = Order.all
+		@orders = current_borrower.orders.closed_orders
 	end
 
 	def show 
 	end
 
 	def edit
-		@order = current_borrower.orders.find_by(id: params[:id])
 	end
 
 	def update
@@ -34,6 +33,6 @@ class OrdersController < ApplicationController
 	end
 
 	def find_order
-		@order = Order.find(params[:id])
+		@order = current_borrower.orders.find_by(id: params[:id])
 	end
 end

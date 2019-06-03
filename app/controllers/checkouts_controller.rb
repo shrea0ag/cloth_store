@@ -51,13 +51,13 @@ class CheckoutsController < ApplicationController
       result_hash = {
         :header => "Sweet Success!",
         :icon => "success",
-        :message => "Your test transaction has been successfully processed. See the Braintree API response and try again."
+        :message => "Your test transaction has been successfully processed. Have a nice day!"
       }
     else
       result_hash = {
         :header => "Transaction Failed",
         :icon => "fail",
-        :message => "Your test transaction has a status of #{status}. See the Braintree API response and try again."
+        :message => "Your test transaction has a status of #{status}."
       }
     end
   end

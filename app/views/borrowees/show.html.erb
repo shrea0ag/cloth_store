@@ -6,6 +6,7 @@
 		<th> Color: </th>
 		<th> price: </th>
 		<th> quantity: </th>
+		<th> times_borrowed </th>
   </tr>
   	<% @borrowee.products.each do |product| %>
 	    <tr>
@@ -15,13 +16,14 @@
 	      <td><%= product.color %></td>
 	      <td><%= product.price %></td>
 	      <td><%= product.count %> </td>
+	      <td><%= product.order_items.all.pluck(:quantity).sum %> </td>
 	      <td><%= link_to 'Destroy', product ,
                 method: :delete,
                 data: { confirm: 'Are you sure?' } %></td>
-        <td> <%= link_to "edit", edit_product_path(product) %> </td>
+        <td> <%= link_to "edit", edit_product_path(product), class: "btn btn-primary" %> </td>
       </tr>
 
     	</tr>
 	  <% end %>
  </table>
-<%= link_to "Add Product", new_product_path %>
+<%= link_to "Add Product", new_product_path, class: "btn btn-primary" %>

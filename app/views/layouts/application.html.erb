@@ -16,13 +16,11 @@
     <% if borrower_signed_in? %>
         <%= render 'layouts/borrower_signed_in' %>
     <% end %>
-    <div class="container error">
+    <div class="container">
       <% if flash.present? %>
-        <ul class="kal">
-          <% flash.each do |key, message| %>
-            <li class="<%= key %> test"><%= message %></li>
-          <% end %>
-        </ul>
+        <% flash.each do |key, message| %>
+          <div class="alert alert-<%= key %>"><%= message %></div>
+        <% end %>
       <% end %>
       <%= yield %>
     </div>

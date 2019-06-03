@@ -17,33 +17,19 @@ class Product < ApplicationRecord
     end
   end
 
-  def image_type
-    if image.presence == false
-      errors.add(:image, "should be attached")
-    end
-    if !image.content_type.in?(%('image/jpeg image/png image/jpg'))
-      errors.add(:image, "needs to be JPEG,JPG or PNG")
-    end
-  end
-
 	def size 
 		q = {s: size_s, xs: size_xs, m: size_m, l: size_l, xl: size_xl}
 		q.select{|key, value| value.eql?(true) }.keys.join(',')
 	end
 
-  def orders_for_a_product
-    order_items.includes(:order)
-  end
 
   def available?
-    if count > count_quantity_of_product_borrowed  
-      "true"
-    end
+    count > count_quantity_of_product_borrowed  
   end
 
   private
   def count_quantity_of_product_borrowed
-    orders_for_a_product.select {|x| x.order.status.eql?("borrowed")}.count
+    order_items.includes(:order).select {|x| x.order.status.eql?("borrowed")}.count
   end
 end
 

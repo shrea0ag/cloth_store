@@ -1,5 +1,5 @@
 <div class = "row">
-	<div class = "col-md-12">
+	<div class = "col-md-6">
 	<% current_borrower.borrowed_orders.each_slice(3) do |slice| %>   
   	<tr>
     <% slice.each do |order| %>
@@ -13,7 +13,7 @@
          </div>
       </td>
 			<% end %>
-      <p> <%= link_to "Return", edit_order_path(order) %> | <%= order.total_of_a_order%> </p>
+      <p> <%= link_to "Return", edit_order_path(order), class: "btn btn-primary" %> | <%= order.total_of_a_order%> </p>
 		<% end %>
 		</tr>
 	<% end %>

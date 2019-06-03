@@ -23,9 +23,9 @@ class OrderItemTest < ActiveSupport::TestCase
   	assert_not @order_item.valid?
   end
 
-  test "quantity must not be greater than 5" do
-    @order_item.quantity = 6
-    assert_not @order_item.valid?
+  test "quantity has no limit " do
+    @order_item.quantity = 25
+    assert @order_item.valid?
   end
 
   test "product_id should be not be nil" do

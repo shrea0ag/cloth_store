@@ -10,7 +10,7 @@ class OrderItemsController < ApplicationController
 				redirect_to borrower_path(current_borrower)
 			else
 				flash[:success] = "Order Placed"
-				redirect_to edit_order_path(@order_item.order)
+				redirect_to order_path(@order_item.order)
 			end
 		else
 			flash[:error] = @order_item.errors.full_messages.to_sentence
@@ -34,7 +34,7 @@ class OrderItemsController < ApplicationController
 	def destroy
 		@order_item = current_borrower.order_items.find_by(id: params[:id])
     @order_item.destroy
-    redirect_to borrower_path(current_borrower)
+   	redirect_back(fallback_location: products_path)
 	end
 
 	private

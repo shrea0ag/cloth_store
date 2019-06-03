@@ -9,37 +9,52 @@ class Order < ApplicationRecord
   validates  :address, length: { maximum: 50 }, allow_blank: true
   validates  :phone, numericality: true, length: {is: 10}, allow_blank: true
   scope :open_orders, ->{ where(status: 'processing')}
-
-  def total_of_a_order
-    order_items.collect {|x| x.total}.sum * days
-  end
-
+  scope :closed_orders, ->{ where(status: 'returned')}
+  
   def days_to_expected_return_date
     self.expected_return_date = Date.today + days
   end
 
-  def final_total_of_order
+  def total_of_a_order
+    sum_total_of_order_items * days
+  end
+
+  def total_of_order_before_return_date
+    if Date.today.eql?(updated_at.to_date)
+      sum_total_of_order_items
+    else
+      sum_total_of_order_items * (Date.today - updated_at.to_date)
+    end
+  end
+
+  def total_of_late_return_order
     total_price = 0
     order_items.each do |item| 
       total_price += (Date.today - expected_return_date) * (item.total + 200)
     end
-    (total_price).abs
+    total_price
   end
 
 
   def total_amount
-    if Date.today <= expected_return_date 
+    if Date.today.eql?(expected_return_date) 
       self.total = total_of_a_order
+    elsif Date.today < expected_return_date
+      self.total = total_of_order_before_return_date
     else
-      self.total = final_total_of_order
+      self.total = total_of_late_return_of_order
     end
   end
   
   private
   def update_status
-    if status == "processing"
+    if status == 'processing'
       self.status = "borrowed"
     end
+  end
+
+  def sum_total_of_order_items
+    order_items.collect {|x| x.total }.sum
   end
 end
 

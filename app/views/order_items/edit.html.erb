@@ -1,5 +1,5 @@
 <div class="form-group">
-  <%= form_for @order_item do |f| %>
+  <%= form_for @order_item, local: true do |f| %>
     <div>
       <%= f.label :size %>: <br>
       <% @order_item.product.size.split(',').each do |size| %> 

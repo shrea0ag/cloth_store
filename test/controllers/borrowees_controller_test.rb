@@ -30,7 +30,7 @@ class BorroweesControllerTest < ActionDispatch::IntegrationTest
 
 	test 'authenticated users can GET index' do
     sign_in @borrowee
-    get '/products/new'
+    get new_product_path
     assert_response :success
     assert_select "a[href=?]", new_product_path
     assert_select "a[href=?]", edit_borrowee_registration_path

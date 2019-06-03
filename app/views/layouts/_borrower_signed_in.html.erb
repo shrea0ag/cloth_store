@@ -10,6 +10,7 @@
 				<li><%= link_to 'Edit details' , edit_borrower_registration_path, method: :get %></li>
 				<li><%= link_to 'Cart',  borrower_path(current_borrower)%> </li>
 				<li><%= link_to 'Return', borrowers_path %> </li>
+				<li><%= link_to 'Orders', orders_path %> </li>
 				<li><%= link_to 'Log out', destroy_borrower_session_path, method: :delete %></li>
 			</ul>
 	  </nav>

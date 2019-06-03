@@ -30,7 +30,7 @@ class BorrowersControllerTest < ActionDispatch::IntegrationTest
 
 	test 'authenticated borrower can login and access layout links' do
     sign_in @borrower
-    get '/products'
+    get products_path
     assert_response :success
     assert_select "a[href=?]", products_path
     assert_select "a[href=?]", edit_borrower_registration_path

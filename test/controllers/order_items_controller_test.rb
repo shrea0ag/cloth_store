@@ -60,20 +60,4 @@ class OrderItemsControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_response :success
   end
-
-  test "borrower can delete orderitem when added to cart" do
-    sign_in @borrower
-    get products_path
-    assert_response :success
-    get product_path(@product)
-    assert_response :success
-    post  order_items_path, params: { order_item: {product_id: @product.id, size: "m", quantity: 1, color: "white"}, cart: "Add to cart"}
-    assert_redirected_to borrower_path(@borrower)
-    follow_redirect!
-    assert_response :success
-    delete order_item_path(@order_item)
-    assert_redirected_to borrower_path(@borrower)
-    follow_redirect!
-    assert_response :success
-  end
 end

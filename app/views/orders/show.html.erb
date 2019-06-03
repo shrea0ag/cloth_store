@@ -4,18 +4,17 @@
 	  <th> Quantity: </th>
 		<th> Price </th>
 		<th> return_date </th>
-		<th> expected_return_date </th>
-		<th> fine </th>
   </tr>
   <%@order.order_items.each  do |item| %>
 		<tr>
 			<td><%= image_tag(item.product.image,style: "width: 25%",class:"img-thumbnail") %></td>
-		  <td><%= item.Quantity %></td>
-		  <td><%= item.product.price %></td>
+		  <td><%= item.quantity %></td>
+		  <td><%= item.total %></td>
 		  <td><%= Date.today %></td>
-		  <td><%= @order.expected_return_date %></td>
-		  <td><%= @order.total_amount %></td>
+		  <td> <%= link_to "Don't want to buy? delete", order_item_path(item) ,method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
 		</tr>
   <% end %>
+   <td> <%= link_to "Buy", edit_order_path(@order), class: "btn btn-primary" %> </td>
 </table>
 
