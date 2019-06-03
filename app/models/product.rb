@@ -4,7 +4,7 @@ class Product < ApplicationRecord
   has_one_attached :image
 	validates  :borrowee_id, presence: true
 	validates  :name, presence: true, length: { in: 4..20 }
-	validates  :price, :count, presence: true, numericality: true
+	validates  :price, :quantity, presence: true, numericality: true
   validates  :gender, presence: true
   validates  :color, presence: true
   validates  :image, presence: true
@@ -24,10 +24,9 @@ class Product < ApplicationRecord
 
 
   def available?
-    count > count_quantity_of_product_borrowed  
+    quantity > count_quantity_of_product_borrowed  
   end
 
-  private
   def count_quantity_of_product_borrowed
     order_items.includes(:order).select {|x| x.order.status.eql?("borrowed")}.count
   end

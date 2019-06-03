@@ -1,14 +1,12 @@
 <table class = "table">
   <tr>
   	<th> Image: </th>
-	  <th> Quantity: </th>
 		<th> Price </th>
 		<th> return_date </th>
   </tr>
   <%@order.order_items.each  do |item| %>
 		<tr>
 			<td><%= image_tag(item.product.image,style: "width: 25%",class:"img-thumbnail") %></td>
-		  <td><%= item.quantity %></td>
 		  <td><%= item.total %></td>
 		  <td><%= Date.today %></td>
 		  <td> <%= link_to "Don't want to buy? delete", order_item_path(item) ,method: :delete,

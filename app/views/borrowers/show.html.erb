@@ -5,22 +5,25 @@
 		<th> Size: </th>
 		<th> Color: </th>
 		<th> price: </th>
-		<th> quantity: </th>
   </tr>
-  <% @borrower.processing_orders.each do |order| %>
-  	<% order.order_items.each do |item| %>
-   <tr>
-    	<td ><%= image_tag(item.product.image,style: "width: 25%",class:"img-thumbnail") %></td>
-      <td><%= item.product.name %></td>
-      <td><%= item.size %></td>
-      <td><%= item.color %></td>
-      <td><%= item.total %></td>
-      <td> <%= link_to "Don't want to buy? delete", order_item_path(item) ,method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
-			<td> <%= link_to "edit", edit_order_item_path(item) %> </td>
-      <td> <%= link_to "Buy", edit_order_path(order), class: "btn btn-primary" %> </td>
-   	</tr>
-    <% end %>
-	<% end %>
+  <% if @borrower.processing_orders.present? %>
+    <% @borrower.processing_orders.each do |order| %>
+    	<% order.order_items.each do |item| %>
+     <tr>
+      	<td ><%= image_tag(item.product.image,style: "width: 25%",class:"img-thumbnail") %></td>
+        <td><%= item.product.name %></td>
+        <td><%= item.size %></td>
+        <td><%= item.color %></td>
+        <td><%= item.total %></td>
+        <td> <%= link_to "Don't want to buy? delete", order_item_path(item) ,method: :delete,
+                data: { confirm: 'Are you sure?' } %></td>
+  			<td> <%= link_to "edit", edit_order_item_path(item) %> </td>
+        <td> <%= link_to "Buy", edit_order_path(order), class: "btn btn-primary" %> </td>
+     	</tr>
+      <% end %>
+  	<% end %>
+  <% else %>
+    <p> Empty cart </p>
+  <% end %>
 </table>
 

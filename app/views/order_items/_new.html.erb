@@ -9,10 +9,6 @@
       <% end %>
     </div>
     <div>
-      <%= f.label        :quantity %> 
-      <%= f.number_field :quantity %> 
-    </div>
-    <div>
       <%= f.label :Color %>:<br>
       <% @product.color.split(',').each do |color| %>
         <%= f.radio_button(:color, color) %>

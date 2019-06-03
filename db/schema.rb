@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_30_062638) do
+ActiveRecord::Schema.define(version: 2019_06_03_071123) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -64,7 +64,6 @@ ActiveRecord::Schema.define(version: 2019_05_30_062638) do
   create_table "order_items", force: :cascade do |t|
     t.string "size"
     t.string "color"
-    t.integer "quantity"
     t.decimal "total"
     t.integer "borrower_id"
     t.integer "product_id"
@@ -112,8 +111,8 @@ ActiveRecord::Schema.define(version: 2019_05_30_062638) do
     t.boolean "size_xl"
     t.decimal "price"
     t.string "color"
-    t.integer "count", default: 4
     t.string "gender"
+    t.integer "quantity", default: 20
     t.index ["borrowee_id"], name: "index_products_on_borrowee_id"
   end
 
