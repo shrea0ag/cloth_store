@@ -9,8 +9,13 @@ class Borrower < ApplicationRecord
  	validates :email, presence: true, uniqueness: true
   validates :phone, presence: true, numericality: true, length: {is: 10}, uniqueness: true
 
+
+  def items_in_cart?
+    order_items_having_status_processing > 0
+  end
+
   def processing_orders
-  	orders.open_orders
+    orders.open_orders
   end
 
   def borrowed_orders
@@ -19,5 +24,9 @@ class Borrower < ApplicationRecord
 
   def open_order
     orders.open_orders.take || orders.create
+  end
+  
+  def order_items_having_status_processing
+    order_items.includes(:order).select {|x| x.order.status.eql?("processing")}.count
   end
 end

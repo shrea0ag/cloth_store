@@ -1,61 +1,74 @@
-<div class = "row" >
-	<div class = "col-sm-4">
-	</div>
-	<div class = "col-sm-4">
-		<div class="form-group row" align= "center" >
-		<h1 class="h3 mb-3 font-weight-normal"> <strong> Add Products </strong> </h1> 
-		<%= form_with model: @product, local: true do |f| %>
-			<div class = "col-sm-2 col-form-label">
-				<%= f.label  :name%>
-			</div>
-			<div class = "col-sm-10">
-				<%= f.text_field :name, placeholder: "Name", :class=>"form-controll" %>
-			</div>
-			<div class = "col-sm-2 col-form-label">
-				<%= f.label  :image, :class => "fiield"%>
-			</div>
-			<div class = "col-sm-10">
-				<%= f.file_field :image, :class=>"form-controll" %>
-			</div>
-			<div class = "col-sm-2 col-form-label" >
-				<%= f.label :size %>
-			</div>
-			<div class = col-sm-10 %>
-				<%= f.check_box :size_xs%>
-				<%= f.label(:xs, "Xtra-Small") %>
-				<%= f.check_box :size_s%>
-				<%= f.label(:s, "Small") %>
-				<%= f.check_box :size_m %>
-				<%= f.label(:m, "Medium") %>
-				<%= f.check_box :size_l %>
-				<%= f.label(:l, "Large") %>
-				<%= f.check_box :size_xl %>
-				<%= f.label(:xl, "Xtra-Large") %>
-			</div>
-			<div class = "col-sm-2 col-form-label">
-				<%= f.label :color,:class => "col-sm-2 col-form-label" %>
-			</div>
-			<div class = col-sm-10> 
-				<%= f.text_field :color, :class=>"form-controll"%>
-			</div>
-			<div class = "field" >
-		    <%= f.label :gender, :class => "col-sm-2 col-form-label" %>
-		    <%= f.select(:gender, options_for_select([['Male','Male'],['Female','Female']])) %>
-			</div>
-			<div class = "field">
-				<%= f.label :quantity, :class => "col-sm-2 col-form-label"%>
-				<%= f.text_field :quantity, :class => "col-sm-10"%>
-			</div>
-			<div class = "field">
-				<%= f.label :price, :class => "col-sm-2 col-form-label"%>
-				<%= f.text_field :price, :class => "col-sm-10" %>
-			</div>
-			<div class = "field">
-				<%= f.submit  %>
-			</div>
-		<% end %> 
-		</div>
-		<div class = "col-sm-4">
-		</div>
-	</div>
+<h1 class="h3 mb-3 font-weight-normal" style= "margin-left: 390px;"> <strong> Add Product </strong> </h1>
+<div class = "row">
+  <div class = "col-sm-2">
+  </div>
+  <div class = "col-sm-6">
+    <div class = "container" style = "margin-top: 21px;" > 
+    <div class="form-horizontal" >
+      <%= form_with model: @product, local: true do |f| %>
+      	<div class="form-group">
+           <%= f.label :Name, class: "control-label col-sm-2"%> 
+          <div class="col-sm-10">
+            <%= f.text_field :name, placeholder: "Name" %> 
+          </div>
+        </div>
+        <div class="form-group">
+           <%= f.label :Image, class: "control-label col-sm-2"%> 
+          <div class="col-sm-10">
+            <%= f.file_field :image  %> 
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :Size, class: "control-label col-sm-2" %> 
+          <div class="col-sm-10">
+            <div class="form-check">
+            	<%= f.check_box :size_xs, class: "form-check-input"  %>
+							<%= f.label(:xs, "Xtra-Small", class: "form-check-label") %>
+							<%= f.check_box :size_s, class: "form-check-input"  %>
+							<%= f.label(:s, "Small", class: "form-check-label") %>
+							<%= f.check_box :size_m, class: "form-check-input" %>
+							<%= f.label(:m, "Medium", class: "form-check-label") %>
+							<%= f.check_box :size_l, class: "form-check-input" %>
+							<%= f.label(:l, "Large", class: "form-check-label") %>
+							<%= f.check_box :size_xl, class: "form-check-input" %>
+							<%= f.label(:xl, "Xtra-Large", class: "form-check-label") %> 
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+           <%= f.label :Color, class: "control-label col-sm-2"%> 
+          <div class="col-sm-10">
+            <%= f.text_field :color %> 
+          </div>
+        </div>
+        <div class="form-group">
+           <%= f.label :Gender, class: "control-label col-sm-2"%> 
+          <div class="col-sm-10">
+            <%= f.select(:gender, options_for_select([['Male','Male'],['Female','Female']])) %> 
+          </div>
+        </div>
+        <div class="form-group">
+           <%= f.label :Quantity, class: "control-label col-sm-2"%> 
+          <div class="col-sm-10">
+            <%= f.text_field :quantity %> 
+          </div>
+        </div>
+        <div class="form-group">
+           <%= f.label :Price, class: "control-label col-sm-2"%> 
+          <div class="col-sm-10">
+            <%= f.text_field :price %> 
+          </div>
+        </div>
+        <div class="form-group">
+          <div class = "butt">
+            <%= f.submit "Add Product", :class => "btn btn-success"%>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    </div>
+  </div>
+  <div class = "col-sm-4">
+  </div>
 </div>
+

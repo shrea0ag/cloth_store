@@ -9,6 +9,10 @@ section {
   overflow: auto;
 }
 
+.navbar-inverse .navbar-nav > li > a {
+    color: white;
+}
+
 textarea {
   resize: vertical;
 }
@@ -27,25 +31,24 @@ textarea {
   margin-top: -6%
 }
 
-.top-right{
+.top-right {
   position: absolute;
-  top: 22%;
-  left: 38%;
-  font-size: 154%;
+  top: 8px;
+  right: 16px;
   color: white;
 }
 
 .top-left {
   position: absolute;
-  top: 22%;
-  left: 27%;
-  font-size: 154%;
+  top: 8px;
+  right: 150px;
   color: white;
 }
 
+
 .thumbnail{
   width:250px;
-  height:auto;
+  height: auto;
   margin-right: 31px;
   margin-left: 92px;
 }
@@ -127,4 +130,15 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 
 .butt{
   margin-left: 174px;
+}
+
+.glyphicon {
+    top: 14px;
+    color: white
+  }
+
+sup{
+  
+    top: 0.5em;
+    color: white;
 }

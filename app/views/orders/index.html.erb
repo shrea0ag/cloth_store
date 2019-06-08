@@ -1,27 +1,24 @@
-<table>
-  <% @orders.each_slice(3) do |slice| %>  
-    <tr>
-      <% slice.each do |order| %>
-        <tr>
-          <% order.order_items.each do |item| %>
-            <td>
-              <div class = "row">
-                <div class = "col-md-12">
-                  <div class = "thumbnail">
-                    <%= order.id %>
-                    <%= image_tag(item.product.image) %>
-                  </div>
-                  <div class = "caption", style="margin-left: 77px;">
-                    <p> <%= item.product.name %> | size: <%= item.size %> | amount: <%= order.total %> | returned_on: <%= order.actual_return_date %> | payment_id: <%=order.payment.transaction_id %>   </p>
-                  </div>
-                </div>
-              </div>
-            </td>
-          <% end %>
-        </tr>
-      <% end %>
-    </tr>
-  <% end %>
-</table>
-
- 
+<% if @orders.present? %>
+  <% @orders.each do |order| %>
+    <% order.order_items.each do |item| %>
+    <div class = "container" style="margin-top: 2%">
+      <div class = "row">
+        <div class = "col-md-1">
+        </div>
+        <div class = "col-md-4">
+          <div class="card shadow" style="width: 30rem;">
+            <%= image_tag(item.product.image, class: "card-img-top") %>
+          </div>
+        </div>
+        <div class = "col-md-3">
+          <div class = "jumbotron" style="margin-top: 8%">
+            <p class="font-weight-bold"> Name: <%= item.product.name %> <br> Size: <%= item.size %>  <br> Amount: Rs. <%=order.total %> <br> Return Date: <%= order.actual_return_date%> <br> Payment_id: <%=order.payment.transaction_id %>  </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  <%end %>
+<% else %>
+  <p class = "alert alert-danger"> You haven't ordered anything yet! </p>
+<% end %>

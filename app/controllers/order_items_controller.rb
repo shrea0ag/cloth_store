@@ -10,7 +10,7 @@ class OrderItemsController < ApplicationController
 				flash[:success] = "Added"
 				redirect_to borrower_path(current_borrower)
 			else
-				flash[:success] = "Order Placed"
+				flash[:success] = "These are your OrderItems"
 				redirect_to borrower_path(current_borrower)
 			end
 		else

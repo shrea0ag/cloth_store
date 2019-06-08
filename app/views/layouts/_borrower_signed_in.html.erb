@@ -1,10 +1,14 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
+<header class="navbar navbar-fixed-top navbar-inverse" >
 	<div class="container">
 	  <nav>
-	    <ul class="nav navbar-nav navbar-right">
+	    <ul class="nav navbar-nav navbar-right" >
 				<li><%= link_to 'Home', products_path %> </li>
 				<li><%= link_to 'Edit details' , edit_borrower_registration_path, method: :get %></li>
-				<li><%= link_to 'Cart',  borrower_path(current_borrower)%> </li>
+				<li> <p>
+					<% if current_borrower.items_in_cart? %>
+						<sup> <%= current_borrower.order_items_having_status_processing %> </sup>
+					<% end %> <span class="glyphicon glyphicon-shopping-cart"><%= link_to 'Cart',  borrower_path(current_borrower), style:"color:white;" %> </p>
+				</li>
 				<li><%= link_to 'Return', borrowers_path %> </li>
 				<li><%= link_to 'Orders', orders_path %> </li>
 				<li><%= link_to 'Log out', destroy_borrower_session_path, method: :delete %></li>
