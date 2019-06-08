@@ -4,7 +4,7 @@ class OrderItemTest < ActiveSupport::TestCase
   def setup
   	@borrowee = create(:borrowee)
   	@borrower = create(:borrower)
-    @product  = create(:product)
+    @product  = create(:product, borrowee: @borrowee)
   	@order = create(:order, borrower: @borrower)
   	@order_item = create(:order_item, borrower: @borrower, product: @product, order:@order)
   end
@@ -23,10 +23,6 @@ class OrderItemTest < ActiveSupport::TestCase
   	assert_not @order_item.valid?
   end
 
-  test "product_id should be not be nil" do
-  	@order_item.product_id = " "
-  	assert_not @order_item.valid?
-  end
 
   test "borrower_id should be not be nil" do
   	@order_item.borrower_id = " "

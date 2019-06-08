@@ -16,7 +16,7 @@ class BorroweesLoginTest < ActionDispatch::IntegrationTest
 	test "login with valid information" do  
 		get new_borrowee_session_path
 		assert_template 'devise/sessions/new'
-		post new_borrowee_session_path, params:{ borrowee: { email: "abhi@gmail.com", password: "123456"},commit: "Log in"}
+		post new_borrowee_session_path, params:{ borrowee: { email: "priya@gmail.com", password: "123456"},commit: "Log in"}
 		assert_redirected_to '/'
 		follow_redirect!
 		get new_product_path

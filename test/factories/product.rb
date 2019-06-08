@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :product do
-  	borrowee_id {1}
+  	borrowee_id {3}
     name { "John" }
     size_xs {true }
 	  size_s { false }

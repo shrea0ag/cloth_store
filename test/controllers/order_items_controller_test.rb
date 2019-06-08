@@ -4,7 +4,7 @@ class OrderItemsControllerTest < ActionDispatch::IntegrationTest
   def setup
   	@borrowee = create(:borrowee)
   	@borrower = create(:borrower)
-    @product  = create(:product)
+    @product  = create(:product, borrowee: @borrowee)
   	@order = create(:order, borrower: @borrower)
   	@order_item = create(:order_item, borrower: @borrower, product: @product, order:@order)
   end

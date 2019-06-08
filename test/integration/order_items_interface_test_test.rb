@@ -4,7 +4,7 @@ class OrderItemsInterfaceTestTest < ActionDispatch::IntegrationTest
   def setup
   	@borrowee = create(:borrowee)
   	@borrower = create(:borrower)
-    @product  = create(:product)
+    @product  = create(:product, borrowee: @borrowee)
   	@order = create(:order, borrower: @borrower)
   	@order_item = create(:order_item, borrower: @borrower, product: @product, order:@order)
   end
@@ -28,7 +28,7 @@ class OrderItemsInterfaceTestTest < ActionDispatch::IntegrationTest
   		post order_items_path, params: { order_item: {product_id: @product.id, size: "m", quantity: 1, color: "white"}, commit: "Create Order item"}
   	end
   	follow_redirect!
-  	assert_template 'orders/show'
+  	assert_template 'borrowers/show'
   	assert_not flash.empty?
   	assert_select 'a', text: 'delete', count: 0
   end

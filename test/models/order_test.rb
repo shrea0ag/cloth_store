@@ -4,7 +4,7 @@ class OrderTest < ActiveSupport::TestCase
  	def setup
 		@borrowee = create(:borrowee)
   	@borrower = create(:borrower)
-    @product  = create(:product)
+    @product  = create(:product, borrowee: @borrowee)
   	@order = create(:order, borrower: @borrower)
   	@order_item = create(:order_item, borrower: @borrower, product: @product, order:@order)
 	end
@@ -13,7 +13,7 @@ class OrderTest < ActiveSupport::TestCase
   	assert @order.valid?
   end
 
-  test "days must not be greater than 5" do
+  test "days must less than 5" do
   	@order.days = 6
   	assert_not @order.valid?
   end

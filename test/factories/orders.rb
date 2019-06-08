@@ -7,6 +7,6 @@ FactoryBot.define do
     phone { "9829034774" }
     expected_return_date { "2019-05-30" }
     days { 1 }
-    borrower_id { 5 }
+    borrower_id { 3 }
   end
 end

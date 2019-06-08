@@ -4,7 +4,7 @@ class OrdersInterfaceTestTest < ActionDispatch::IntegrationTest
   def setup
 		@borrowee = create(:borrowee)
   	@borrower = create(:borrower)
-    @product  = create(:product)
+    @product  = create(:product, borrowee: @borrowee)
   	@order = create(:order, borrower: @borrower)
   	@order_item = create(:order_item, borrower: @borrower, product: @product, order:@order)
 	end
@@ -19,7 +19,7 @@ class OrdersInterfaceTestTest < ActionDispatch::IntegrationTest
   	assert_select "a"
   	get product_path(@product)
   	post order_items_path, params: { order_item: {product_id: @product.id, size: "m", quantity: 1, color: "white"}, commit: "Create Order item"}
-    assert_redirected_to order_path(@order)
+    assert_redirected_to borrower_path(@borrower)
    	get edit_order_path(@order)
     assert_response :success
 	end

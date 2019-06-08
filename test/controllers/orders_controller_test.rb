@@ -4,7 +4,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
 	def setup
 		@borrowee = create(:borrowee)
   	@borrower = create(:borrower)
-    @product  = create(:product)
+    @product  = create(:product, borrowee: @borrowee)
   	@order = create(:order, borrower: @borrower)
   	@order_item = create(:order_item, borrower: @borrower, product: @product, order:@order)
 	end
@@ -63,5 +63,4 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_response :success
   end
-
 end
