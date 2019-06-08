@@ -1,6 +1,7 @@
 class OrderItemsController < ApplicationController
 	before_action :authenticate_borrower!
 	before_action :find_order_item, only:[:edit, :update]
+	
 	def create
 	 	@order_item = current_borrower.order_items.build(order_item_params)
 	 	@order_item.order = current_borrower.open_order
@@ -10,11 +11,11 @@ class OrderItemsController < ApplicationController
 				redirect_to borrower_path(current_borrower)
 			else
 				flash[:success] = "Order Placed"
-				redirect_to order_path(@order_item.order)
+				redirect_to borrower_path(current_borrower)
 			end
 		else
-			flash[:error] = @order_item.errors.full_messages.to_sentence
-			redirect_to products_path
+			flash[:danger] = @order_item.errors.full_messages.to_sentence
+			redirect_back(fallback_location: products_path)
 		end
 	end
 
@@ -24,9 +25,10 @@ class OrderItemsController < ApplicationController
 	def update
 		@order_item.update_attributes(order_item_params)
 		if @order_item.save
+			flash[:success] = "Order Updated"
 			redirect_to borrower_path(current_borrower)
 		else
-			flash.now[:error] = @order_item.errors.full_messages.to_sentence
+			flash.now[:danger] = @order_item.errors.full_messages.to_sentence
 			render 'edit'
 		end
 	end
@@ -39,7 +41,7 @@ class OrderItemsController < ApplicationController
 
 	private
 	def order_item_params
-		params.require(:order_item).permit(:size, :color, :product_id, :total)
+		params.require(:order_item).permit(:size, :color, :product_id, :quantity, :total)
 	end
 
 	def find_order_item

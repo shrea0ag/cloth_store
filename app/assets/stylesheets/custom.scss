@@ -29,7 +29,7 @@ textarea {
 
 .top-right{
   position: absolute;
-  top: 31%;
+  top: 22%;
   left: 38%;
   font-size: 154%;
   color: white;
@@ -37,7 +37,7 @@ textarea {
 
 .top-left {
   position: absolute;
-  top: 31%;
+  top: 22%;
   left: 27%;
   font-size: 154%;
   color: white;
@@ -51,6 +51,80 @@ textarea {
 }
 
 .field{
-  margin-bottom: 11px;  margin-top: 15px;
+  margin-top: 9px;
 }
 
+.fiield{
+  margin-top: 12px;
+}
+
+.vl {
+  border-left: 2px solid #DAD1CE;
+  height: 800px;
+}
+
+.searching{
+  margin-top: 12px
+}
+
+.form-control{
+  width: 20%;
+
+}
+
+.form-controll{
+  width: 70%;
+  margin-top: 12px
+}
+
+.inner{
+  overflow: hidden;
+}
+
+.inner img {
+  transition: all 1.5s ease;
+}
+
+.inner:hover img{
+  transform: scale(1.5);
+}
+
+.jumbotron{
+  background-color: transparent;
+  border: 2px solid #DAD1CE;
+}
+
+input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="button"].btn-block {
+    width: 83%;
+    }
+
+.btn-lg, .btn-group-lg > .btn {
+    padding: 6px 16px;
+    }
+
+.container .jumbotron{
+  padding-left: 52px;
+  padding-right: 0px;
+  padding-top: 10px;
+  padding-bottom: 0px;
+}
+
+.jumbotron p{
+  font-size: medium;
+  }
+
+.btn-block{
+  width: 26%;
+  margin-top: 2%;
+  margin-left: 17%;
+
+}
+
+.form-horizontal{
+
+    font-size: 18px;
+}
+
+.butt{
+  margin-left: 174px;
+}

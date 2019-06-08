@@ -3,8 +3,9 @@ class Product < ApplicationRecord
   has_many   :order_items, dependent: :destroy
   has_one_attached :image
 	validates  :borrowee_id, presence: true
-	validates  :name, presence: true, length: { in: 4..20 }
-	validates  :price, :quantity, presence: true, numericality: true
+	validates  :name, presence: true, length: { in: 3..20 }
+	validates  :price,  presence: true
+  validates  :quantity, presence: true, numericality: {only_integer: true, greater_than: 0}
   validates  :gender, presence: true
   validates  :color, presence: true
   validates  :image, presence: true
@@ -24,11 +25,7 @@ class Product < ApplicationRecord
 
 
   def available?
-    quantity > count_quantity_of_product_borrowed  
-  end
-
-  def count_quantity_of_product_borrowed
-    order_items.includes(:order).select {|x| x.order.status.eql?("borrowed")}.count
+    quantity > 0
   end
 end
 

@@ -9,7 +9,7 @@ FactoryBot.define do
 	  size_xl { false }
 	  price { 0.5e3 }
 	  color { "white,blue" }
-	  count { 40 }
+	  quantity { 40 }
 	  gender { "Male" }
     image { Rack::Test::UploadedFile.new('test/fixtures/boy1.jpeg', 'image/jpeg')}
   end

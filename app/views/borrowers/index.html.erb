@@ -1,26 +1,25 @@
-<div class = "row">
-	<div class = "col-md-6">
-  <% if current_borrower.borrowed_orders.present? %>
-  	<% current_borrower.borrowed_orders.each_slice(3) do |slice| %>   
-    	<tr>
-      <% slice.each do |order| %>
-      	<% order.order_items.each do |item| %>
-        <td> 
-       		<div class = "thumbnail">
-            <%= image_tag(item.product.image) %>
-           	<div class = caption >
-              <p> <%= item.product.name %> | <%= item.total %> | <%= order.expected_return_date %>  </p>
+<% if current_borrower.borrowed_orders.present? %>
+  <% current_borrower.borrowed_orders.each do |order| %>
+    <% order.order_items.each do |item| %>
+      <div class = "container" style="margin-top: 2%">
+        <div class = "row">
+          <div class = "col-md-1">
+          </div>
+          <div class = "col-md-4">
+            <div class="card shadow" style="width: 30rem;">
+              <%= image_tag(item.product.image, class: "card-img-top") %>
             </div>
-           </div>
-        </td>
-  			<% end %>
-        <p> <%= link_to "Return", edit_order_path(order), class: "btn btn-primary" %> | <%= order.total_of_a_order%> </p>
-  		<% end %>
-		  </tr>
+          </div>
+          <div class = "col-md-3">
+            <div class = "jumbotron" style="margin-top: 8%">
+              <p class="font-weight-bold"> Name: <%= item.product.name %> <br> Return Date: <%= order.expected_return_date %> <br> Amount: Rs. <%= item.total %> </p>
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
-  <% else %>
-  <p> Nothing to return </p>
-	<% end %>
-	</div>
-</div>
-
+      <p style="margin-left: 22%; margin-top: 2%"> <%= link_to "Return", order_path(order), class: "btn btn-success" %> | Rs. <%= order.total_of_a_order%> </p>
+  <% end %>
+<% else %>
+  <p class = "alert alert-danger"> Nothing to return </p>
+<% end %>

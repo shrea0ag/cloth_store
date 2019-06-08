@@ -1,29 +1,26 @@
-<table class = "table">
-  <tr>
-  	<th> Image: </th>
-	  <th> Name: </th>
-		<th> Size: </th>
-		<th> Color: </th>
-		<th> price: </th>
-  </tr>
-  <% if @borrower.processing_orders.present? %>
-    <% @borrower.processing_orders.each do |order| %>
-    	<% order.order_items.each do |item| %>
-     <tr>
-      	<td ><%= image_tag(item.product.image,style: "width: 25%",class:"img-thumbnail") %></td>
-        <td><%= item.product.name %></td>
-        <td><%= item.size %></td>
-        <td><%= item.color %></td>
-        <td><%= item.total %></td>
-        <td> <%= link_to "Don't want to buy? delete", order_item_path(item) ,method: :delete,
-                data: { confirm: 'Are you sure?' } %></td>
-  			<td> <%= link_to "edit", edit_order_item_path(item) %> </td>
-        <td> <%= link_to "Buy", edit_order_path(order), class: "btn btn-primary" %> </td>
-     	</tr>
-      <% end %>
-  	<% end %>
+<% @borrower.processing_orders.each do |order| %>
+  <% if order.order_items.present? %>
+    <% order.order_items.each do |item| %>
+      <div class = "container" style="margin-top: 2%">
+        <div class = "row">
+          <div class = "col-md-1">
+          </div>
+          <div class = "col-md-4">
+            <div class="card shadow" style="width: 30rem;">
+              <%= image_tag(item.product.image, class: "card-img-top") %>
+            </div>
+          </div>
+          <div class = "col-md-3">
+            <div class = "jumbotron" style="margin-top: 8%">
+              <p class="font-weight-bold"> Name: <%= item.product.name %> <br> Size: <%= item.size %> <br> Color: <%= item.color %> <br> Amount: Rs. <%= item.total %> <br> <%= link_to "Delete", order_item_path(item) ,method: :delete,
+                  data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-lg" %>  <%= link_to "Edit", edit_order_item_path(item), class: "btn btn-success btn-lg" %> </p> 
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+      <%= link_to "Place Order", edit_order_path(order), class: "btn btn-success btn-lg btn-block" %>
   <% else %>
-    <p> Empty cart </p>
+    <p class = "alert alert-danger"> Your cart is empty </p>
   <% end %>
-</table>
-
+<% end %>

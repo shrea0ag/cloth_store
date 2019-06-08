@@ -15,13 +15,13 @@ class OrdersController < ApplicationController
 	def update
 	  if @order.update_attributes(order_params)
 	  	if params[:return]
-	  		redirect_to new_checkout_path(order_id: @order.id)
+	  		redirect_to 
 	  	else
 		  	flash[:success] = "Order Borrowed"
 		    redirect_to borrowers_path
 		  end
 	  else
-	  	flash.now[:error] = @order.errors.full_messages.to_sentence
+	  	flash.now[:danger] = @order.errors.full_messages.to_sentence
 	    render 'edit'
 	  end
 	end
@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
 
 	private
 	def order_params
-		params.require(:order).permit(:actual_return_date, :status, :total, :address, :phone, :days)
+		params.require(:order).permit(:actual_return_date, :status, :total, :address, :phone, :days, :city, :pincode)
 	end
 
 	def find_order

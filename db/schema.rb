@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_03_071123) do
+ActiveRecord::Schema.define(version: 2019_06_08_015445) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 2019_06_03_071123) do
     t.integer "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "quantity", default: 1
     t.index ["borrower_id"], name: "index_order_items_on_borrower_id"
     t.index ["order_id"], name: "index_order_items_on_order_id"
     t.index ["product_id"], name: "index_order_items_on_product_id"
@@ -86,6 +87,8 @@ ActiveRecord::Schema.define(version: 2019_06_03_071123) do
     t.integer "borrower_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "pincode"
+    t.string "city"
     t.index ["borrower_id"], name: "index_orders_on_borrower_id"
   end
 
@@ -114,16 +117,6 @@ ActiveRecord::Schema.define(version: 2019_06_03_071123) do
     t.string "gender"
     t.integer "quantity", default: 20
     t.index ["borrowee_id"], name: "index_products_on_borrowee_id"
-  end
-
-  create_table "searches", force: :cascade do |t|
-    t.string "keywords"
-    t.decimal "min_price"
-    t.decimal "max_price"
-    t.string "name"
-    t.string "gender"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end

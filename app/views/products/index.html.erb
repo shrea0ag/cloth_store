@@ -1,24 +1,48 @@
-<h3> <%=link_to "filters", new_search_path %> </h3>
-<table>
-  <% @products.each_slice(3) do |slice| %>   
-    <tr>
-      <% slice.each do |product| %>
-        <td> 
-          <div class = "row">
-            <div class = "col-md-12">
-              <div class = "thumbnail">
-                <%= link_to product_path(product) do %>
-                  <%= image_tag(product.image) %>
-                <% end %>
-                <div class = "caption">
-                  <p> <%= product.name %> |
-                  <%= product.price %> </p>
+<div class = "row" style="margin-left: -60px">
+  <div class = "col-md-2" style="margin-top: 35px">
+    <%= form_tag products_path, :method =>'get' do  %>
+      <div>
+        <%= text_field_tag :search, params[:search], placeholder: "Name" %>
+      </div>
+      <div class = "searching">
+        <%= text_field_tag :searchmin, params[:searchmin], placeholder: "MinPrice" %>
+      </div>
+      <div class = "searching">
+        <%= text_field_tag :searchmax, params[:searchmax], placeholder: "MaxPrice" %>
+      </div>
+      <div class = "searching">
+       <%= submit_tag "Search" %>
+      </div>
+    <% end %>
+  </div>
+  <div class = col-md-1>
+    <div class="vl"></div>
+  </div>
+  <div class = col-md-9>
+    <%= will_paginate %>
+    <table>
+      <% @products.each_slice(2) do |slice| %>   
+        <tr>
+          <% slice.each do |product| %>
+            <td> 
+              <div class = "row">
+                <div class = "col-md-12">
+                  <div class = "thumbnail">
+                    <%= link_to product_path(product) do %>
+                      <%= image_tag(product.image) %>
+                    <% end %>
+                    <div class = "caption">
+                      <p> <%= product.name %> |
+                      <%= product.price %> </p>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </td>
+            </td>
+          <% end %>
+        </tr>
       <% end %>
-    </tr>
-  <% end %>
-</table> 
+    </table>
+    <%= will_paginate %>
+  </div>
+</div> 

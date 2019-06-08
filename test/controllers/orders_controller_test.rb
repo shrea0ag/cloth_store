@@ -21,7 +21,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     get product_path(@product)
     assert_response :success
-    post order_items_path, params: { order_item: {product_id: @product.id, size: "m", quantity: 1, color: "white"}, commit: "Create Order item"}
+    post order_items_path, params: { order_item: {product_id: @product.id, size: "m", color: "white"}, commit: "Create Order item"}
     follow_redirect!
     assert_response :success
     get edit_order_path(@order)
@@ -36,7 +36,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     get product_path(@product)
     assert_response :success
-    post order_items_path, params: { order_item: {product_id: @product.id, size: "m", quantity: 1, color: "white"}, commit: "Add to cart"}
+    post order_items_path, params: { order_item: {product_id: @product.id, size: "m", color: "white"}, commit: "Add to cart"}
     follow_redirect!
     assert_response :success
     get edit_order_path(@order)
@@ -51,7 +51,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     get product_path(@product)
     assert_response :success
-    post order_items_path, params: { order_item: {product_id: @product.id, size: "m", quantity: 1, color: "white"}, commit: "Create Order item"}
+    post order_items_path, params: { order_item: {product_id: @product.id, size: "m",  color: "white"}, commit: "Create Order item"}
     follow_redirect!
     assert_response :success
     get edit_order_path(@order)

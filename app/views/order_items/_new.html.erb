@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="form-signup" >
   <%= form_for @order_item do |f| %>
     <%= f.hidden_field :product_id , value: @product.id %> 
     <div>
@@ -8,6 +8,10 @@
         <%= f.label(:size, size) %>
       <% end %>
     </div>
+    <div >
+      <%= f.label :quantity %> <br>
+      <%= f.number_field :quantity %> 
+    </div>
     <div>
       <%= f.label :Color %>:<br>
       <% @product.color.split(',').each do |color| %>
@@ -15,9 +19,11 @@
         <%= f.label(:color, color) %>
       <% end %> 
     </div>
-    <div>
-        <%= f.submit "Add to cart", name: "cart" %>
-        <%= f.submit %>
-      </div>
+    <div >
+      <%= f.submit "Add to cart", name: "cart", class: "btn btn-dark btn-lg btn-block" %>
+      <%= f.submit "Buy Now", class: "btn btn-primary btn-lg btn-block" %>
+    </div>
   <% end %>
 </div>
+
+

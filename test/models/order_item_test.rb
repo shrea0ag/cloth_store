@@ -18,14 +18,9 @@ class OrderItemTest < ActiveSupport::TestCase
   	assert_not @order_item.valid?
   end
 
-  test "quantitiy should be present" do
-  	@order_item.quantity = " "
+  test "size should be present" do
+  	@order_item.size = " "
   	assert_not @order_item.valid?
-  end
-
-  test "quantity has no limit " do
-    @order_item.quantity = 25
-    assert @order_item.valid?
   end
 
   test "product_id should be not be nil" do

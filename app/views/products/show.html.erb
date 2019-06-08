@@ -1,33 +1,26 @@
-<div class = "row">
-	<div class = "col-md-4">
-		<%= image_tag(@product.image, class:"img-thumbnail") %>
-	</div>
-	<div class = "col-md-4">
-		<table class = "table">
-  		<tr>
-		    <th>Name</th>
-		    <th>Size</th>
-		    <th>Color</th>
-		    <th>price</th>
-  		</tr>
-  		<tr>
-		    <td><%= @product.name %></td>
-		    <td><%= @product.size %></td>
-		    <td><%= @product.color %></td>
-		    <td><%= @product.price %></td>
-		  </tr>
-		</table>
-		
-	</div>
-	<div class = "col-md-1" >
-	</div>
-	<div class = "col-md-3">
-		<%if @product.available? %>
-			<%= render 'order_items/new' %>
-		<% else %>
-			<p> Out Of Stock </p>
-		<% end %> 
+<div class = "container" style="margin-top: 8%">
+	<div class = "row">
+		<div class = "col-md-2">
+		</div>
+		<div class = "col-md-4">
+			<div class="card shadow" style="width: 30rem;">
+				<div class = "inner">
+					<%= image_tag(@product.image, class: "card-img-top") %>
+				</div>
+				<div class="card-body text-md-left">
+					<b> <h5 class="card-title"> <b>  <%= @product.name.capitalize %> </b>  </h5>
+					<p class="card-text">Rs.<%=@product.price%> </p>
+				</div>
+			</div>
+		</div>
+		<div class = "col-md-3">
+			<%if @product.available? %>
+				<%= render 'order_items/new' %>
+			<% else %>
+				<p> Out Of Stock </p>
+			<% end %> 
+		</div>
+		<div class = "col-md-3">
+		</div>
 	</div>
 </div>
-<%= link_to "back", products_path, class: "btn btn-primary" %>
-

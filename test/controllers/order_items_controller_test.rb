@@ -21,7 +21,7 @@ class OrderItemsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     get product_path(@product)
     assert_response :success
-    post  order_items_path, params: { order_item: {product_id: @product.id, size: "m", quantity: 1, color: "white"}, cart: "Add to cart"}
+    post  order_items_path, params: { order_item: {product_id: @product.id, size: "m", color: "white"}, cart: "Add to cart"}
     assert_redirected_to borrower_path(@borrower)
     follow_redirect!
     assert_response :success
@@ -33,7 +33,7 @@ class OrderItemsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     get product_path(@product)
     assert_response :success
-    post order_items_path, params: { order_item: {product_id: @product.id, size: "m", quantity: 1, color: "white"}, commit: "Create Order item"}
+    post order_items_path, params: { order_item: {product_id: @product.id, size: "m", color: "white"}, commit: "Create Order item"}
     follow_redirect!
     assert_response :success
   end
@@ -49,13 +49,13 @@ class OrderItemsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     get product_path(@product)
     assert_response :success
-    post  order_items_path, params: { order_item: {product_id: @product.id, size: "m", quantity: 1, color: "white"}, cart: "Add to cart"}
+    post  order_items_path, params: { order_item: {product_id: @product.id, size: "m", color: "white"}, cart: "Add to cart"}
     assert_redirected_to borrower_path(@borrower)
     follow_redirect!
     assert_response :success
     get edit_order_item_path
     assert_response :success
-    patch order_item_path, params: {order_item: {quantity: 1, size: "xs", color: "white"}}
+    patch order_item_path, params: {order_item: { size: "xs", color: "white"}}
     assert_redirected_to borrower_path(@borrower)
     follow_redirect!
     assert_response :success
