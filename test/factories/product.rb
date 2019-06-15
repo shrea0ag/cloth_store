@@ -11,6 +11,7 @@ FactoryBot.define do
 	  color { "white,blue" }
 	  quantity { 40 }
 	  gender { "Male" }
+	  borrowed_quantity{0}
     image { Rack::Test::UploadedFile.new('test/fixtures/boy1.jpeg', 'image/jpeg')}
   end
 end

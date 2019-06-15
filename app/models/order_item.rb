@@ -14,7 +14,7 @@ class OrderItem < ApplicationRecord
 
 	def ordered_quantity_not_greater_than_product_quantity_present
 		if quantity > product.quantity
-			errors.add(:base, "#{product.quantity} is available")
+			errors.add(:base, "#{product.quantity} are available")
 		end
 	end
 end

@@ -1,18 +1,20 @@
 class Order < ApplicationRecord
   belongs_to :borrower
   has_many :order_items, dependent: :destroy
-  has_one  :payment
+  has_one  :payment, dependent: :destroy
   before_update :days_to_expected_return_date
   before_update :update_status
   after_update :update_borrowed_product_quantity
   after_update :update_returned_product_quantity
   validates  :status, presence: true
-  validates  :days, numericality: {less_than: 5}, allow_blank: true
-  validates  :address, length: { maximum: 50 }, allow_blank: true
-  validates  :phone, numericality: true, length: {is: 10}, allow_blank: true
-  validates  :pincode, numericality: true, allow_blank: true
-  validates_format_of :city, :with => /\A[a-z]+\z/i, allow_blank: true
+  validates  :days, numericality: {less_than: 5}, presence: true, on: [:update]
+  validates  :address, length: { maximum: 50 }, presence: true, on: [:update]
+  validates  :phone, numericality: true, length: {is: 10}, presence: true, on: [:update]
+  validates  :pincode, numericality: true, presence: true, on: [:update]
+  validates  :city, inclusion: { in: %w(Jaipur Kota),
+    message: "Delivery is not available in this %{value}"}, presence: true, on: [:update]
   scope :open_orders, ->{ where(status: 'processing')}
+  validates_format_of :name, :with => /\A[a-z]+\z/i, presence: true, on: [:update]
   scope :closed_orders, ->{ where(status: 'returned')}
   
   def days_to_expected_return_date
@@ -31,26 +33,31 @@ class Order < ApplicationRecord
     end
   end
 
+  def fine
+    number_of_order_items_in_a_order * 200
+  end
+
   def total_of_late_return_order
-    days_for_late_return_date * sum_total_of_order_items + (number_of_order_items_in_a_order * 200) 
+    days_for_late_return_date * sum_total_of_order_items + fine
   end
 
 
   def total_amount
-    if Date.today.eql?(expected_return_date) 
-      self.total = total_of_a_order
-    elsif Date.today < expected_return_date
-      self.total = total_of_order_before_return_date
-    else
-      self.total = total_of_late_return_of_order
-    end
+    self.total = if Date.today.eql?(expected_return_date) 
+                  total_of_a_order
+                elsif Date.today < expected_return_date
+                  total_of_order_before_return_date
+                else
+                  total_of_late_return_order
+                end
   end
 
   def update_borrowed_product_quantity
     if status == "borrowed"
       order_items.map do |x|
         left = x.product.quantity - x.quantity
-        x.product.update_attributes(quantity: left)
+        borrowed_quantity = x.product.borrowed_quantity + x.quantity
+        x.product.update_attributes(quantity: left, borrowed_quantity: borrowed_quantity)
       end
     end
   end
@@ -58,8 +65,9 @@ class Order < ApplicationRecord
   def update_returned_product_quantity
     if status == "returned"
       order_items.map do |x|
-        left = x.product.quantity + x.quantity
-        x.product.update_attributes(quantity: left)
+        add = x.product.quantity + x.quantity
+         borrowed_quantity = x.product.borrowed_quantity - x.quantity
+        x.product.update_attributes(quantity: add, borrowed_quantity: borrowed_quantity)
       end
     end
   end

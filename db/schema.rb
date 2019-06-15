@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_08_015445) do
+ActiveRecord::Schema.define(version: 2019_06_12_065411) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 2019_06_08_015445) do
     t.datetime "updated_at", null: false
     t.integer "pincode"
     t.string "city"
+    t.string "name"
     t.index ["borrower_id"], name: "index_orders_on_borrower_id"
   end
 
@@ -116,6 +117,7 @@ ActiveRecord::Schema.define(version: 2019_06_08_015445) do
     t.string "color"
     t.string "gender"
     t.integer "quantity", default: 20
+    t.integer "borrowed_quantity", default: 0
     t.index ["borrowee_id"], name: "index_products_on_borrowee_id"
   end
 

@@ -7,7 +7,7 @@ class OrderItemsController < ApplicationController
 	 	@order_item.order = current_borrower.open_order
 		if @order_item.save
 			if params[:cart]
-				flash[:success] = "Added"
+				flash[:success] = "Added to your cart"
 				redirect_to borrower_path(current_borrower)
 			else
 				flash[:success] = "These are your OrderItems"

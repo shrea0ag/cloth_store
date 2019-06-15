@@ -56,11 +56,8 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     get edit_order_path(@order)
     assert_response :success
-    patch order_path, params: {order: {address: "b-80,bajaj nagar", phone: "7877748711", days: 2}}
-    assert_redirected_to borrowers_path
-    get edit_order_path(@order)
-    patch order_path, params: {order: {total: 9.99}}
-    follow_redirect!
+    patch order_path, params: {order: {address: "b-80,bajaj nagar", phone: "7877748711", days: 2, name: 'Faa', pincode: 302015, city: 'jaipur'}}
+    get borrowers_path
     assert_response :success
   end
 end

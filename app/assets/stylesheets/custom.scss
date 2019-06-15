@@ -99,6 +99,7 @@ textarea {
 
 input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="button"].btn-block {
     width: 83%;
+    margin-left: 0%;
     }
 
 .btn-lg, .btn-group-lg > .btn {
@@ -142,3 +143,11 @@ sup{
     top: 0.5em;
     color: white;
 }
+
+.thumbnail > img, .thumbnail a > img {
+    display: block;
+    max-width: 100%;
+    height: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    }

@@ -5,7 +5,7 @@ FactoryBot.define do
     total { 0.5e3 }
     quantity {2}
     borrower_id { 3 }
-    product_id { 3 }
-    order_id { 7 }
+    product_id { 10 }
+    order_id { 18 }
   end
 end

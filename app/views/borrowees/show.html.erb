@@ -4,8 +4,9 @@
 	  <th> Name: </th>
 		<th> Size: </th>
 		<th> Color: </th>
-		<th> price: </th>
-		<th> quantity: </th>
+		<th> Price: </th>
+		<th> Quantity: </th>
+		<th> Borrowed Quantity: </th>
   </tr>
   	<% @borrowee.products.each do |product| %>
 	    <tr>
@@ -15,11 +16,11 @@
 	      <td><%= product.color %></td>
 	      <td><%= product.price %></td>
 	      <td><%= product.quantity%> </td>
-	     	
+	     	<td><%= product.borrowed_quantity%> </td>
 	      <td><%= link_to 'Destroy', product ,
                 method: :delete,
-                data: { confirm: 'Are you sure?' } %></td>
-        <td> <%= link_to "edit", edit_product_path(product), class: "btn btn-primary" %> </td>
+                data: { confirm: 'Are you sure?' }, class: "btn btn-danger "  %></td>
+        <td> <%= link_to "Edit", edit_product_path(product), class: "btn btn-primary " %> </td>
       </tr>
 
     	</tr>

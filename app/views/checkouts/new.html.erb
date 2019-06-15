@@ -11,7 +11,7 @@
 
       <%= form_tag("/checkouts", method: "post", id: "payment-form") do %>
         <section>
-          <%= hidden_field_tag :order_id, params[:order_id] %>
+          <%= hidden_field_tag :order_id, @order.id %>
           <label for="amount">
             <span class="input-label">Amount</span>
             <div class="input-wrapper amount-wrapper">

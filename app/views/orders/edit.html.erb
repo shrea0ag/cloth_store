@@ -1,8 +1,11 @@
-<div class="form-group" align= "center" > 
+l<div class="form-group" align= "center" > 
   <h1 class="h3 mb-3 font-weight-normal"> <strong> Place Order </strong> </h1> 
   <%= form_with(model: @order, local: true )do |f| %> 
     <div>
       <%= f.number_field :days , placeholder: "Specify Days" %> 
+    </div>
+    <div class = "field">
+      <%= f.text_field :name, value: current_borrower.name.capitalize  %> 
     </div>
     <div class = "field">
       <%= f.phone_field :phone, placeholder: "Phone number"  %> 
@@ -11,7 +14,7 @@
       <%= f.text_area :address, size: '30x5', placeholder: "Address" %>
     </div> 
     <div class = "field">
-      <%= f.text_field :city, placeholder: "City" %>
+      <%= f.select(:city, options_for_select([['Jaipur','Jaipur'],['Kota','Kota']])) %> 
     </div> 
     <div class = "field">
       <%= f.text_field :pincode, placeholder: "Pincode"%>

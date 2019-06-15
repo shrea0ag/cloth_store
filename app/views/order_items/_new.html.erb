@@ -1,11 +1,11 @@
-<div class="form-signup" >
+<div class="form-signup">
   <%= form_for @order_item do |f| %>
     <%= f.hidden_field :product_id , value: @product.id %> 
     <div>
       <%= f.label :size %>: <br>
       <% @product.size.split(',').each do |size| %> 
         <%= f.radio_button(:size, size) %>
-        <%= f.label(:size, size) %>
+        <%= f.label(:size, size.capitalize) %>
       <% end %>
     </div>
     <div >
@@ -16,10 +16,10 @@
       <%= f.label :Color %>:<br>
       <% @product.color.split(',').each do |color| %>
         <%= f.radio_button(:color, color) %>
-        <%= f.label(:color, color) %>
+        <%= f.label(:color, color.capitalize) %>
       <% end %> 
     </div>
-    <div >
+    <div>
       <%= f.submit "Add to cart", name: "cart", class: "btn btn-dark btn-lg btn-block" %>
       <%= f.submit "Buy Now", class: "btn btn-primary btn-lg btn-block" %>
     </div>

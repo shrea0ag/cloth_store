@@ -11,12 +11,12 @@ class CheckoutsService
 	def self.gateway
     env = ENV["BT_ENVIRONMENT"]
 
-    @gateway ||= Braintree::Gateway.new(
-      :environment => :sandbox,
-      :merchant_id => 'yqvkxjhrk3f9466z',
-      :public_key => 'rd8vrswk49k8w6hf',
-      :private_key => 'b457e8ec5b5ddda20b7f7e5977bcaf96',
-    )
+   gateway = Braintree::Gateway.new(
+    :environment => :sandbox,
+    :merchant_id => '54br95yxrx789ppw',
+    :public_key => 'fgx6z6f6qqrtxh24',
+    :private_key => '56f29786c714fb9753db5d1bbd372cd1',
+  )
   end
 
   def self._create_result_hash(transaction)
@@ -45,8 +45,5 @@ class CheckoutsService
       :submit_for_settlement => true
     }
   )
-  end
-
-
-	
+  end	
 end

@@ -3,7 +3,7 @@ class Borrower < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :orders
+  has_many :orders, dependent: :destroy
   has_many :order_items
   validates :name,  presence: true, length: { maximum: 50 }
  	validates :email, presence: true, uniqueness: true

@@ -18,7 +18,7 @@ class CheckoutsController < ApplicationController
 
     if result.success? || result.transaction
       order = Order.find(params[:order_id])
-      order.create_payment(order_id: params[:order_id],amount: amount, token: nonce, transaction_id: result.transaction.id)
+      order.create_payment(order_id: order.id,amount: amount, token: nonce, transaction_id: result.transaction.id)
       order.update_attributes(status: "returned",actual_return_date: Date.today, total: amount)
       redirect_to checkout_path(result.transaction.id) 
     else

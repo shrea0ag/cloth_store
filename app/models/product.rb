@@ -9,6 +9,7 @@ class Product < ApplicationRecord
   validates  :gender, presence: true
   validates  :color, presence: true
   validates  :image, presence: true
+  validates  :borrowed_quantity, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0}, on: [:update]
   validate  :one_of_the_sizes_must_be_checked
 
 

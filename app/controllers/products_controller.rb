@@ -3,7 +3,6 @@ class ProductsController < ApplicationController
   before_action :authenticate_borrower!, only:[:show, :index]
   before_action :find_product, only:[:edit, :update]
   
-
   def index
     @products = Product.paginate(page: params[:page], per_page: 3)
     if params[:search].present?
@@ -60,7 +59,7 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-  	params.require(:product).permit(:name, :size_s, :size_xs, :size_m, :size_l, :size_xl, :color, :quantity, :gender, :price, :image)
+  	params.require(:product).permit(:name, :size_s, :size_xs, :size_m, :size_l, :size_xl, :color, :quantity, :gender, :price, :image, :borrowed_quantity)
   end
 
   def find_product
